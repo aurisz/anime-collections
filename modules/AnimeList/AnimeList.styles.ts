@@ -8,6 +8,8 @@ export const GridContainer = styled.div`
 `
 
 export const GridItem = styled.div`
+  cursor: pointer;
+
   img {
     object-fit: cover;
     border-radius: 8px;
