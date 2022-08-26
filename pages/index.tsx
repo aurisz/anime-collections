@@ -1,9 +1,11 @@
 import Head from 'next/head'
 import type { NextPage } from 'next'
+import { useLazyQuery } from '@apollo/client'
 
 import client from '../lib/apollo-client'
 import { GET_ANIME_LIST } from '../graphql/getAnimeList.graphql'
 import AnimeList from '../modules/AnimeList'
+import Pagination from '../components/Pagination'
 import type { Media, PageInfo } from '../types'
 
 export async function getServerSideProps() {
@@ -17,19 +19,37 @@ export async function getServerSideProps() {
 
   return {
     props: {
-      animeList: data.Page,
+      data: data.Page,
     },
  };
 }
 
 interface Props {
-  animeList: {
+  data: {
     pageInfo: PageInfo,
     media: Media[]
   }
 }
 
-const Home: NextPage<Props> = ({ animeList }) => {
+const Home: NextPage<Props> = ({ data }) => {
+  const [loadAnimes, { called, loading, error, data: clientData }] = useLazyQuery(GET_ANIME_LIST)
+
+  let animeList = data.media
+  let pageInfo = data.pageInfo
+
+  if (called && loading) return <p>Loading ...</p>
+  
+  if (called) {
+    const { Page } = clientData
+
+    animeList = Page.media
+    pageInfo = Page.pageInfo
+  }
+
+  if (error) {
+    return <p>Sorry, something went wrong.</p>
+  }
+
   return (
     <>
       <Head>
@@ -38,7 +58,16 @@ const Home: NextPage<Props> = ({ animeList }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <AnimeList data={animeList.media} />
+      <AnimeList data={animeList} />
+      
+      <Pagination
+        currentPage={pageInfo.currentPage}
+        totalCount={pageInfo.total}
+        pageSize={pageInfo.perPage}
+        onPageChange={page => {
+          loadAnimes({ variables: { page, perPage: 10 }})
+        }}
+      />
     </>
   )
 }
