@@ -6,6 +6,7 @@ import client from '../lib/apollo-client'
 import { GET_ANIME_LIST } from '../graphql/getAnimeList.graphql'
 import AnimeList from '../modules/AnimeList'
 import Pagination from '../components/Pagination'
+import Layout from '../components/Layout'
 import type { Media, PageInfo } from '../types'
 
 export async function getServerSideProps() {
@@ -53,21 +54,22 @@ const Home: NextPage<Props> = ({ data }) => {
   return (
     <>
       <Head>
-        <title>Anime Collections</title>
-        <meta name="description" content="Anime Collections" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Anime List</title>
+        <meta name="description" content="Anime List" />
       </Head>
       
-      <AnimeList data={animeList} />
-      
-      <Pagination
-        currentPage={pageInfo.currentPage}
-        totalCount={pageInfo.total}
-        pageSize={pageInfo.perPage}
-        onPageChange={page => {
-          loadAnimes({ variables: { page, perPage: 10 }})
-        }}
-      />
+      <Layout>
+        <AnimeList data={animeList} />
+        
+        <Pagination
+          currentPage={pageInfo.currentPage}
+          totalCount={pageInfo.total}
+          pageSize={pageInfo.perPage}
+          onPageChange={page => {
+            loadAnimes({ variables: { page, perPage: 10 }})
+          }}
+        />
+      </Layout>
     </>
   )
 }

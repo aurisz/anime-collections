@@ -4,7 +4,7 @@ import styles from './Navbar.styles'
 
 const Navbar = () => (
   <nav css={styles.container}>
-    <h1>Anime Collections</h1>
+    <h1>Anime List</h1>
     <ul css={styles.navList}>
       <li>
         <Link href="/">

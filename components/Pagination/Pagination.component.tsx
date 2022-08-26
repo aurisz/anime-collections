@@ -8,7 +8,7 @@ const Pagination = (props: Props) => {
     totalCount,
     currentPage,
     pageSize,
-    siblingCount = 2,
+    siblingCount = 1,
   } = props
 
   const paginationRange = usePagination({
@@ -36,7 +36,7 @@ const Pagination = (props: Props) => {
 
   return (
     <ul css={styles.container}>
-      {!isFirstPage && <li css={styles.item} onClick={onPrevious}>Prev</li>}
+      {!isFirstPage && <li css={styles.item} onClick={onPrevious}>❮</li>}
       {paginationRange.map(pageNumber => {
         if (pageNumber === DOTS) {
           return <li key={pageNumber} css={[styles.item, styles.dots]}>…</li>;
@@ -54,7 +54,7 @@ const Pagination = (props: Props) => {
           );
         }
       })}
-      {!isLastPage && <li css={styles.item} onClick={onNext}>Next</li>}
+      {!isLastPage && <li css={styles.item} onClick={onNext}>❯</li>}
     </ul>
   );
 };

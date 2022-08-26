@@ -1,4 +1,3 @@
-import styled from '@emotion/styled'
 import { css } from '@emotion/react'
 
 const styles = {
@@ -8,21 +7,21 @@ const styles = {
     width: 100%;
     justify-content: center;
     margin-top: 2rem;
+    padding: 0;
   `,
   item: css`
     padding: 0 12px;
     height: 32px;
     text-align: center;
-    margin: auto 4px;
+    // margin: auto 4px;
     color: white;
     display: flex;
     box-sizing: border-box;
     align-items: center;
-    letter-spacing: 0.01071em;
     border-radius: 16px;
     line-height: 1.43;
-    font-size: 13px;
-    min-width: 32px;
+    font-size: 12px;
+    min-width: 16px;
     &:hover {
       background-color: grey;
       color: black;

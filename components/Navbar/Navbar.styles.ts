@@ -1,16 +1,21 @@
 import { css } from '@emotion/react'
 
 const styles = {
-  container: css({
-    display: 'flex',
-    justifyContent: 'space-between',
-  }),
-  navList: css({
-    display: 'flex',
-    flexWrap: 'wrap',
-    listStyleType: 'none',
-    gap: '1rem',
-  })
+  container: css`
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      padding: 0;
+    }
+  `,
+  navList: css`
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-around;
+  `
 }
 
 export default styles;
