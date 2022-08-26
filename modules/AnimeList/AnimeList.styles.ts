@@ -1,17 +1,24 @@
-import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 
-export const GridContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  justify-items: center;
-  gap: 1rem;
-`
+const styles = {
+  gridContainer: css`
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    justify-items: center;
+    gap: 1rem;
+  `,
+  gridItem: css`
+    cursor: pointer;
 
-export const GridItem = styled.div`
-  cursor: pointer;
+    span {
+      display: block;
+    }
 
-  img {
-    object-fit: cover;
-    border-radius: 8px;
-  }
-`
+    img {
+      object-fit: fill;
+      border-radius: 8px;
+    }
+  `
+}
+
+export default styles
