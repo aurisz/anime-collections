@@ -10,7 +10,6 @@ export const GET_ANIME_LIST = gql`
         total
         currentPage
         lastPage
-        hasNextPage
         perPage
       }
       media (type: ANIME, sort: POPULARITY_DESC) {
@@ -19,13 +18,8 @@ export const GET_ANIME_LIST = gql`
           english
         }
         coverImage {
-          extraLarge
           large
-          medium
-          color
         }
-        bannerImage
-        genres
       }
     }
   }
