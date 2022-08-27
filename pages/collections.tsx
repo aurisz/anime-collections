@@ -3,19 +3,15 @@ import Head from 'next/head'
 import type { NextPage } from 'next'
 
 import CollectionList from '../modules/CollectionList'
+import usePersistedState from '../hooks/usePersistedState'
 
-const Detail: NextPage = () => {
+const CollectionsListPage: NextPage = () => {
   const [collections, setCollections] = useState([])
-
+  const [persistedState] = usePersistedState('anime-collections', [])
+  
   useEffect(() => {
-    const currentCollection = localStorage.getItem('anime-collections')
-    
-    if (currentCollection !== null) {
-      const parsedCollection = JSON.parse(currentCollection)
-
-      setCollections(parsedCollection)
-    }
-  }, [])
+    setCollections(persistedState)
+  }, [persistedState])
 
   return (
     <>
@@ -29,4 +25,4 @@ const Detail: NextPage = () => {
   )
 }
 
-export default Detail
+export default CollectionsListPage

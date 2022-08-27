@@ -1,21 +1,10 @@
 import GridLayout from '../../components/GridLayout'
 import Card from '../../components/Card'
 
-type Collection = {
-  name: string;
-  list: {
-    id: number;
-    coverImage: {
-      large: string;
-    }
-    title: {
-      english: string;
-    }
-  }[]
-}
+import type { AnimeCollection } from '../../types'
 
 interface Props {
-  collections: Collection[]
+  collections: AnimeCollection[]
 }
 
 const CollectionList = ({ collections }: Props) => (

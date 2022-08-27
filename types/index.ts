@@ -8,7 +8,7 @@ export type AnimeListItem = {
   },
 }
 
-export type Collection = {
+export type AnimeCollection = {
   name: string;
   list: AnimeListItem[]
 }
