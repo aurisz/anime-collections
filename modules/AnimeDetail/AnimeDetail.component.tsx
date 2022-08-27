@@ -3,6 +3,7 @@ import parse from 'html-react-parser'
 import styles from './AnimeDetail.styles'
 import useModal from '../../hooks/useModal'
 import Modal from '../../components/Modal/Modal.component'
+import CollectionListInput from '../CollectionLIstInput'
 import type { Props } from './AnimeDetail.types'
 
 const AnimeDetail = (props: Props) => {
@@ -44,7 +45,7 @@ const AnimeDetail = (props: Props) => {
         onClose={toggle}
         title="Add to Collections"
       >
-        <p>Collections</p>
+        <CollectionListInput id={props.id} title={props.title} coverImage={props.coverImage} onClose={toggle} />
       </Modal>
     </div>
   )

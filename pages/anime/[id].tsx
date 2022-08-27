@@ -31,8 +31,6 @@ interface Props {
 }
 
 const Detail: NextPage<Props> = ({ animeDetail }) => {
-  console.log(animeDetail)
-
   return (
     <>
       <Head>

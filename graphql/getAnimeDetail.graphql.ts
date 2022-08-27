@@ -7,6 +7,9 @@ export const GET_ANIME_DETAIL = gql`
       title {
         english
       }
+      coverImage {
+        large
+      }
       genres
       averageScore
       bannerImage
