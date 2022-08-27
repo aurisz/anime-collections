@@ -1,4 +1,4 @@
-export type Media = {
+export type AnimeListItem = {
   id: number,
   title: {
     english: string
@@ -6,6 +6,11 @@ export type Media = {
   coverImage: {
     large: string,
   },
+}
+
+export type Collection = {
+  name: string;
+  list: AnimeListItem[]
 }
 
 export type PageInfo = {

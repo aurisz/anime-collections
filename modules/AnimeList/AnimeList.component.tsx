@@ -8,7 +8,7 @@ const AnimeList = ({ data }: Props) => (
     {data.map(item => (
       <Card
         key={item.id}
-        link={`anime/${item.id}`}
+        link={`/anime/${item.id}`}
         image={item.coverImage.large}
         title={item.title.english}
       />
