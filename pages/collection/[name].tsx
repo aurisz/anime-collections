@@ -7,18 +7,19 @@ import { getCollectionByName } from '../../lib/utils'
 import CollectionDetail from '../../modules/CollectionDetail'
 
 const CollectionDetailPage: NextPage = () => {
-  const { query } = useRouter()
+  const router = useRouter()
+  const collectionName = router.query.name as string;
   const [collections] = usePersistedState('anime-collections', [])
-  const collection = getCollectionByName(collections, query.name as string)
+  const collection = getCollectionByName(collections, collectionName)
 
   return (
     <>
       <Head>
-        <title>Anime Collection {query.name}</title>
-        <meta name="description" content={`Anime Collection ${query.name}`} />
+        <title>Anime Collection {collectionName}</title>
+        <meta name="description" content={`Anime Collection ${collectionName}`} />
       </Head>
 
-      <CollectionDetail data={collection.list} />
+      <CollectionDetail name={collectionName} data={collection.list} />
     </>
   )
 }
