@@ -10,7 +10,7 @@ import type { Props } from './AnimeDetail.types'
 
 const AnimeDetail = (props: Props) => {
   const [collections, setCollections] = useState<string[]>([])
-  const {isShowing, toggle, setIsShowing} = useModal();
+  const {isShowing, toggle} = useModal();
 
   useEffect(() => {
     const currentCollection = localStorage.getItem('anime-collections')
@@ -35,7 +35,7 @@ const AnimeDetail = (props: Props) => {
         <div>
           <h4>Collections</h4>
           <p>{collections.length === 0 ? 'Not added in any collections yet' : collections.join(', ')}</p>
-          <button onClick={() => setIsShowing(true)}>Add to Collection</button>
+          <button onClick={toggle}>Add to Collection</button>
         </div>
         <div>
           <h4>Genres</h4>

@@ -8,7 +8,6 @@ const useModal = () => {
   }
 
   return {
-    setIsShowing,
     isShowing,
     toggle,
   }
