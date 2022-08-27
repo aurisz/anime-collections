@@ -40,3 +40,8 @@ export const removeCollections = (collections: AnimeCollection[], targetName: st
 
 export const addCollections = (collections: AnimeCollection[], targetName: string): AnimeCollection[] => 
   [...collections, { name: targetName, list: [] }]
+
+export const editCollectionName = (collections: AnimeCollection[], currentName: string, newName: string): AnimeCollection[] => 
+  collections.map(collection =>
+    collection.name === currentName ? { ...collection, name: newName } : collection
+  )

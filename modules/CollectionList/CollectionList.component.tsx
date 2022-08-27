@@ -1,13 +1,14 @@
 import { useState } from 'react'
 
 import CollectionAdd from '../CollectionAdd'
+import CollectionEdit from '../CollectionEdit'
 import CollectionRemove from '../CollectionRemove'
 import GridLayout from '../../components/GridLayout'
 import CardLink from '../../components/CardLink/CardLink.component'
 import Modal from '../../components/Modal'
 import useModal from '../../hooks/useModal'
 import { MODAL_TYPE } from '../../constants'
-import { addCollections, removeCollections } from '../../lib/utils'
+import { addCollections, editCollectionName, removeCollections } from '../../lib/utils'
 import type { AnimeCollection } from '../../types'
 import type { SetPersistedState } from '../../hooks/usePersistedState'
 
@@ -41,6 +42,11 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
     toggle()
   }
 
+  function handleEditCollection(newName: string) {
+    setPersistedState(editCollectionName(collections, selectedCollection, newName))
+    toggle()
+  }
+
   function handleRemoveCollection() {
     setPersistedState(removeCollections(collections, selectedCollection))
     toggle()
@@ -48,7 +54,7 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
 
   const getModalContent = {
     [MODAL_TYPE.ADD]: <CollectionAdd onAdd={handleAddCollection} />,
-    [MODAL_TYPE.EDIT]: <p>Edit collection name</p>,
+    [MODAL_TYPE.EDIT]: <CollectionEdit initialValue={selectedCollection} onEdit={handleEditCollection} />,
     [MODAL_TYPE.REMOVE]: <CollectionRemove onRemove={handleRemoveCollection} />,
   }
 
@@ -61,15 +67,15 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
       <hr />
 
       <GridLayout>
-        {collections.map(collection => (
-          <div key={collection.name}>
+        {collections.map(({ name, list }) => (
+          <div key={name}>
             <CardLink
-              title={collection.name}
-              link={`/collection/${collection.name}`}
-              image={collection.list[0]?.coverImage.large}
+              title={name}
+              link={`/collection/${name}`}
+              image={list[0]?.coverImage.large}
             />
-            <button onClick={() => openModal(MODAL_TYPE.EDIT)}>Edit</button>
-            <button onClick={() => openModal(MODAL_TYPE.REMOVE, collection.name)}>Remove</button>
+            <button onClick={() => openModal(MODAL_TYPE.EDIT, name)}>Edit</button>
+            <button onClick={() => openModal(MODAL_TYPE.REMOVE, name)}>Remove</button>
           </div>
         ))}
       </GridLayout>
