@@ -16,11 +16,11 @@ interface Props {
   setPersistedState: SetPersistedState
 }
 
-const getModalTitle = {
-  [MODAL_TYPE.ADD]: 'Add a Collection',
-  [MODAL_TYPE.EDIT]: 'Edit Collection',
-  [MODAL_TYPE.REMOVE]: 'Remove Collection',
-}
+const {
+  ADD_COLLECTION,
+  EDIT_COLLECTION,
+  REMOVE_COLLECTION,
+} = MODAL_TYPE
 
 const CollectionList = ({ collections, setPersistedState }: Props) => {
   const { toggle, isShowing } = useModal()
@@ -51,15 +51,31 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
     toggle()
   }
 
-  const getModalContent = {
-    [MODAL_TYPE.ADD]: <CollectionInput label="Add" onSubmit={handleAddCollection} collections={collections} />,
-    [MODAL_TYPE.EDIT]: <CollectionInput label="Edit" onSubmit={handleEditCollection} initialValue={selectedCollection} collections={collections} />,
-    [MODAL_TYPE.REMOVE]: <CollectionRemove onRemove={handleRemoveCollection} />,
+  const getModal = {
+    [ADD_COLLECTION]: {
+      title: 'Add a Collection',
+      content: <CollectionInput label="Add" onSubmit={handleAddCollection} collections={collections} />
+    },
+    [EDIT_COLLECTION]: {
+      title: 'Edit Collection Name',
+      content: (
+        <CollectionInput
+          label="Edit"
+          onSubmit={handleEditCollection}
+          initialValue={selectedCollection}
+          collections={collections}
+        />
+      )
+    },
+    [REMOVE_COLLECTION]: {
+      title: 'Remove Collection',
+      content: <CollectionRemove onRemove={handleRemoveCollection} />
+    },
   }
 
   return (
     <>
-      <button onClick={() => openModal(MODAL_TYPE.ADD)}>
+      <button onClick={() => openModal(ADD_COLLECTION)}>
         Add a Collection
       </button>
 
@@ -73,8 +89,8 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
               link={`/collection/${name}`}
               image={list[0]?.coverImage.large}
             />
-            <button onClick={() => openModal(MODAL_TYPE.EDIT, name)}>Edit</button>
-            <button onClick={() => openModal(MODAL_TYPE.REMOVE, name)}>Remove</button>
+            <button onClick={() => openModal(EDIT_COLLECTION, name)}>Edit</button>
+            <button onClick={() => openModal(REMOVE_COLLECTION, name)}>Remove</button>
           </div>
         ))}
       </GridLayout>
@@ -82,9 +98,9 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
       <Modal
         isShowing={isShowing}
         onClose={toggle}
-        title={getModalTitle[modalType]}
+        title={getModal[modalType]?.title}
       >
-        {getModalContent[modalType]}
+        {getModal[modalType]?.content}
       </Modal>
     </>
   )
