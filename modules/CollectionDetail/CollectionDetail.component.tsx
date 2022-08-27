@@ -1,5 +1,5 @@
 import GridLayout from '../../components/GridLayout'
-import Card from '../../components/Card'
+import CardLink from '../../components/CardLink'
 import type { AnimeListItem } from '../../types'
 
 interface Props {
@@ -11,7 +11,7 @@ const _renderEmpty = () => (
 )
 
 const _renderCollection = (item: AnimeListItem) => (
-  <Card
+  <CardLink
     key={item.id}
     link={`/anime/${item.id}`}
     image={item.coverImage.large}
