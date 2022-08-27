@@ -1,21 +1,19 @@
-import Image from 'next/image'
-import Link from 'next/link'
-
-import styles from './AnimeList.styles';
+import GridLayout from '../../components/GridLayout'
+import Card from '../../components/Card'
 
 import type { Props } from './AnimeList.types';
 
-const AnimeList = (props: Props) => (
-  <div css={styles.gridContainer}>
-    {props.data.map(item => (
-      <Link href={`anime/${item.id}`} key={item.id}>
-        <div css={styles.gridItem}>
-          <Image src={item.coverImage.large} width={230} height={325} alt={item.title.english} />
-          <span>{item.title.english}</span>
-        </div>
-      </Link>
+const AnimeList = ({ data }: Props) => (
+  <GridLayout>
+    {data.map(item => (
+      <Card
+        key={item.id}
+        link={`anime/${item.id}`}
+        image={item.coverImage.large}
+        title={item.title.english}
+      />
     ))}
-  </div>
+  </GridLayout>
 )
 
 export default AnimeList
