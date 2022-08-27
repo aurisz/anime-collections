@@ -1,13 +1,28 @@
+import { useState, useEffect } from 'react'
 import parse from 'html-react-parser'
 
 import styles from './AnimeDetail.styles'
 import useModal from '../../hooks/useModal'
 import Modal from '../../components/Modal/Modal.component'
 import CollectionListInput from '../CollectionLIstInput'
+import { filterCollectionsById } from '../../lib/utils'
 import type { Props } from './AnimeDetail.types'
 
 const AnimeDetail = (props: Props) => {
+  const [collections, setCollections] = useState<string[]>([])
   const {isShowing, toggle, setIsShowing} = useModal();
+
+  useEffect(() => {
+    const currentCollection = localStorage.getItem('anime-collections')
+    
+    if (currentCollection !== null) {
+      const parsedCollection = JSON.parse(currentCollection)
+
+      const filteredCollection = filterCollectionsById(parsedCollection, props.id)
+      const savedCollectionNames = filteredCollection.map(collection => collection.name)
+      setCollections(savedCollectionNames)
+    }
+  }, [props.id])
   
   return (
     <div css={styles.container}>
@@ -18,11 +33,13 @@ const AnimeDetail = (props: Props) => {
         <h2>{props.title.english}</h2>
         <p>{parse(props.description)}</p>
         <div>
+          <h4>Collections</h4>
+          <p>{collections.length === 0 ? 'Not added in any collections yet' : collections.join(', ')}</p>
           <button onClick={() => setIsShowing(true)}>Add to Collection</button>
         </div>
         <div>
           <h4>Genres</h4>
-          <span>{props.genres.join(', ')}</span>
+          <p>{props.genres.join(', ')}</p>
         </div>
         <div>
           <h4>Video</h4>

@@ -38,3 +38,8 @@ export const updateCollections = (
     return collection
   })
 }
+
+export const filterCollectionsById = (collections: Collection[], filterId: number) => 
+  collections.filter(
+    collection => collection.list.some(item => item.id === filterId)
+  )
