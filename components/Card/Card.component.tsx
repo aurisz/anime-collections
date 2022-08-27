@@ -16,10 +16,12 @@ const Card = ({ link, image, title }: Props) => {
 
   return (
     <Link href={link}>
-      <div css={styles.gridItem}>
-        <Image src={src} width={230} height={325} alt={title} onError={() => setSrc(placeholderPoster)} />
-        <span>{title}</span>
-      </div>
+      <a>
+        <div css={styles.gridItem}>
+          <Image src={src} width={230} height={325} alt={title} onError={() => setSrc(placeholderPoster)} />
+          <span>{title}</span>
+        </div>
+      </a>
     </Link>
   )
 }
