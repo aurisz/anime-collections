@@ -1,9 +1,12 @@
 import parse from 'html-react-parser'
 
 import styles from './AnimeDetail.styles'
+import useModal from '../../hooks/useModal'
+import Modal from '../../components/Modal/Modal.component'
 import type { Props } from './AnimeDetail.types'
 
 const AnimeDetail = (props: Props) => {
+  const {isShowing, toggle, setIsShowing} = useModal();
   
   return (
     <div css={styles.container}>
@@ -13,6 +16,9 @@ const AnimeDetail = (props: Props) => {
       <div css={styles.content}>
         <h2>{props.title.english}</h2>
         <p>{parse(props.description)}</p>
+        <div>
+          <button onClick={() => setIsShowing(true)}>Add to Collection</button>
+        </div>
         <div>
           <h4>Genres</h4>
           <span>{props.genres.join(', ')}</span>
@@ -32,6 +38,14 @@ const AnimeDetail = (props: Props) => {
           </div>
         </div>
       </div>
+
+      <Modal
+        isShowing={isShowing}
+        onClose={toggle}
+        title="Add to Collections"
+      >
+        <p>Collections</p>
+      </Modal>
     </div>
   )
 }

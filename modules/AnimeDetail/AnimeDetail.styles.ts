@@ -22,6 +22,7 @@ const styles = {
     max-width: 768px;
     padding-left: 2rem;
     padding-right: 2rem;
+    margin: 0 auto;
   `,
   infoContainer: css`
     display: flex;
