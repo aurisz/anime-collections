@@ -12,8 +12,8 @@ import type { AnimeCollection } from '../../types'
 import type { SetPersistedState } from '../../hooks/usePersistedState'
 
 interface Props {
-  collections: AnimeCollection[],
-  setPersistedState: SetPersistedState
+  collections: AnimeCollection[];
+  setPersistedState: SetPersistedState;
 }
 
 const {

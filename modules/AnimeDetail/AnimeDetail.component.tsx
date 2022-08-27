@@ -5,7 +5,7 @@ import styles from './AnimeDetail.styles'
 import useModal from '../../hooks/useModal'
 import Modal from '../../components/Modal/Modal.component'
 import CollectionListInput from '../CollectionLIstInput'
-import { filterCollectionsById } from '../../lib/utils'
+import { filterCollectionsById, updateCollections, addCollections } from '../../lib/utils'
 import usePersistedState from '../../hooks/usePersistedState'
 import type { AnimeListItem, AnimeCollection } from '../../types'
 
@@ -34,8 +34,22 @@ const _renderCollections = (collections: AnimeCollection[]) => (
 
 const AnimeDetail = (props: Props) => {
   const {isShowing, toggle} = useModal();
-  const [collections] = usePersistedState('anime-collections', [])
+  const [collections, setCollections] = usePersistedState('anime-collections', [])
   const filteredCollections = filterCollectionsById(collections, props.id)
+
+  function handleAddCollection(name: string) {
+    setCollections(addCollections(collections, name))
+  }
+
+  function handleSaveAnime(collectionName: string) {
+    const { id, title, coverImage } = props
+    const newList = {
+      id, title, coverImage
+    }
+
+    setCollections(updateCollections(collections, collectionName, newList))
+    toggle()
+  }
   
   return (
     <div css={styles.container}>
@@ -75,7 +89,7 @@ const AnimeDetail = (props: Props) => {
         onClose={toggle}
         title="Add to Collections"
       >
-        <CollectionListInput id={props.id} title={props.title} coverImage={props.coverImage} onClose={toggle} />
+        <CollectionListInput collections={collections} onAdd={handleAddCollection} onSave={handleSaveAnime} />
       </Modal>
     </div>
   )
