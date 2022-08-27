@@ -1,12 +1,13 @@
 import { useState } from 'react'
 
 import CollectionAdd from '../CollectionAdd'
+import CollectionRemove from '../CollectionRemove'
 import GridLayout from '../../components/GridLayout'
 import CardLink from '../../components/CardLink/CardLink.component'
 import Modal from '../../components/Modal'
 import useModal from '../../hooks/useModal'
 import { MODAL_TYPE } from '../../constants'
-import { filterCollections } from '../../lib/utils'
+import { addCollections, removeCollections } from '../../lib/utils'
 import type { AnimeCollection } from '../../types'
 import type { SetPersistedState } from '../../hooks/usePersistedState'
 
@@ -34,23 +35,21 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
     setModalType(type)
     toggle()
   }
+  
+  function handleAddCollection(name: string) {
+    setPersistedState(addCollections(collections, name))
+    toggle()
+  }
 
-  function removeCollection() {
-    const filteredCollection = filterCollections(collections, selectedCollection)
-
-    setPersistedState(filteredCollection)
+  function handleRemoveCollection() {
+    setPersistedState(removeCollections(collections, selectedCollection))
     toggle()
   }
 
   const getModalContent = {
-    [MODAL_TYPE.ADD]: <CollectionAdd collections={collections} setPersistedState={setPersistedState} onClose={toggle} />,
+    [MODAL_TYPE.ADD]: <CollectionAdd onAdd={handleAddCollection} />,
     [MODAL_TYPE.EDIT]: <p>Edit collection name</p>,
-    [MODAL_TYPE.REMOVE]: (
-      <div>
-        <p>Are you sure want to remove this collection?</p>
-        <button onClick={removeCollection}>REMOVE</button>
-      </div>
-    ),
+    [MODAL_TYPE.REMOVE]: <CollectionRemove onRemove={handleRemoveCollection} />,
   }
 
   return (
