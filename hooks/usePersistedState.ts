@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-type PersistedState<T> = [T, Dispatch<SetStateAction<T>>]
+export type SetPersistedState = Dispatch<SetStateAction<T>>
+type PersistedState<T> = [T, SetPersistedState]
 
 function usePersistedState<T>(key: string, defaultValue: T): PersistedState<T> {
   const [value, setValue] = useState<T>(() => {

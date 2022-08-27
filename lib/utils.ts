@@ -34,3 +34,6 @@ export const getCollectionByName = (collections: AnimeCollection[], targetName: 
 
   return collections.find(collection => collection.name === targetName) || initialValue
 }
+
+export const filterCollections = (collections: AnimeCollection[], targetName: string): AnimeCollection[] => 
+  collections.filter(collection => collection.name !== targetName)

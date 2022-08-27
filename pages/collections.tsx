@@ -7,7 +7,7 @@ import usePersistedState from '../hooks/usePersistedState'
 
 const CollectionsListPage: NextPage = () => {
   const [collections, setCollections] = useState([])
-  const [persistedState] = usePersistedState('anime-collections', [])
+  const [persistedState, setPersistedState] = usePersistedState('anime-collections', [])
   
   useEffect(() => {
     setCollections(persistedState)
@@ -20,7 +20,7 @@ const CollectionsListPage: NextPage = () => {
         <meta name="description" content="Anime Collections" />
       </Head>
 
-      <CollectionList collections={collections} />
+      <CollectionList collections={collections} setPersistedState={setPersistedState} />
     </>
   )
 }
