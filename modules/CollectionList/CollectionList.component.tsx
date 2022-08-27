@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
-import CollectionAdd from '../CollectionAdd'
-import CollectionEdit from '../CollectionEdit'
 import CollectionRemove from '../CollectionRemove'
+import CollectionInput from '../CollectionInput'
 import GridLayout from '../../components/GridLayout'
 import CardLink from '../../components/CardLink/CardLink.component'
 import Modal from '../../components/Modal'
@@ -53,8 +52,8 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
   }
 
   const getModalContent = {
-    [MODAL_TYPE.ADD]: <CollectionAdd onAdd={handleAddCollection} />,
-    [MODAL_TYPE.EDIT]: <CollectionEdit initialValue={selectedCollection} onEdit={handleEditCollection} />,
+    [MODAL_TYPE.ADD]: <CollectionInput label="Add" onSubmit={handleAddCollection} collections={collections} />,
+    [MODAL_TYPE.EDIT]: <CollectionInput label="Edit" onSubmit={handleEditCollection} initialValue={selectedCollection} collections={collections} />,
     [MODAL_TYPE.REMOVE]: <CollectionRemove onRemove={handleRemoveCollection} />,
   }
 

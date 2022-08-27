@@ -45,3 +45,6 @@ export const editCollectionName = (collections: AnimeCollection[], currentName: 
   collections.map(collection =>
     collection.name === currentName ? { ...collection, name: newName } : collection
   )
+
+export const isCollectionNameExists = (collections: AnimeCollection[], targetName: string): boolean => 
+  collections.some(collection => collection.name === targetName)
