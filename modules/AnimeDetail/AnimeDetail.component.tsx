@@ -1,28 +1,41 @@
-import { useState, useEffect } from 'react'
 import parse from 'html-react-parser'
+import Link from 'next/link'
 
 import styles from './AnimeDetail.styles'
 import useModal from '../../hooks/useModal'
 import Modal from '../../components/Modal/Modal.component'
 import CollectionListInput from '../CollectionLIstInput'
 import { filterCollectionsById } from '../../lib/utils'
-import type { Props } from './AnimeDetail.types'
+import usePersistedState from '../../hooks/usePersistedState'
+import type { AnimeListItem, AnimeCollection } from '../../types'
+
+interface Props extends AnimeListItem {
+  bannerImage: string;
+  description: string;
+  genres: string[];
+  trailer: {
+    id: string;
+  }
+}
+
+const _renderEmptyCollections = () => (
+  <p>Not added in any collections yet</p>
+)
+
+const _renderCollections = (collections: AnimeCollection[]) => (
+  collections.map(({ name }) => (
+    <Link key={name} href={`/collection/${name}`}>
+      <a>
+        <p>{name}</p>
+      </a>
+    </Link>
+  ))
+)
 
 const AnimeDetail = (props: Props) => {
-  const [collections, setCollections] = useState<string[]>([])
   const {isShowing, toggle} = useModal();
-
-  useEffect(() => {
-    const currentCollection = localStorage.getItem('anime-collections')
-    
-    if (currentCollection !== null) {
-      const parsedCollection = JSON.parse(currentCollection)
-
-      const filteredCollection = filterCollectionsById(parsedCollection, props.id)
-      const savedCollectionNames = filteredCollection.map(collection => collection.name)
-      setCollections(savedCollectionNames)
-    }
-  }, [props.id])
+  const [collections] = usePersistedState('anime-collections', [])
+  const filteredCollections = filterCollectionsById(collections, props.id)
   
   return (
     <div css={styles.container}>
@@ -34,7 +47,7 @@ const AnimeDetail = (props: Props) => {
         <p>{parse(props.description)}</p>
         <div>
           <h4>Collections</h4>
-          <p>{collections.length === 0 ? 'Not added in any collections yet' : collections.join(', ')}</p>
+          <div>{filteredCollections.length === 0 ? _renderEmptyCollections() : _renderCollections(filteredCollections)}</div>
           <button onClick={toggle}>Add to Collection</button>
         </div>
         <div>
