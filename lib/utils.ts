@@ -48,3 +48,10 @@ export const editCollectionName = (collections: AnimeCollection[], currentName: 
 
 export const isCollectionNameExists = (collections: AnimeCollection[], targetName: string): boolean => 
   collections.some(collection => collection.name === targetName)
+
+export const removeAnimeFromCollections = (collections: AnimeCollection[], targetName: string, animeId: number): AnimeCollection[] => 
+  collections.map(collection => {
+    const removedIdFromList = collection.list.filter(item => item.id !== animeId)
+
+    return collection.name === targetName ? { ...collection, list: removedIdFromList } : collection
+  })

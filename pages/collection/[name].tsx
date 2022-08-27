@@ -8,9 +8,9 @@ import CollectionDetail from '../../modules/CollectionDetail'
 
 const CollectionDetailPage: NextPage = () => {
   const router = useRouter()
-  const collectionName = router.query.name as string;
-  const [collections] = usePersistedState('anime-collections', [])
-  const collection = getCollectionByName(collections, collectionName)
+  const collectionName = router.query.name as string
+  const [persistedState, setPersistedState] = usePersistedState('anime-collections', [])
+  const collection = getCollectionByName(persistedState, collectionName)
 
   return (
     <>
@@ -19,7 +19,12 @@ const CollectionDetailPage: NextPage = () => {
         <meta name="description" content={`Anime Collection ${collectionName}`} />
       </Head>
 
-      <CollectionDetail name={collectionName} data={collection.list} />
+      <CollectionDetail
+        name={collectionName}
+        list={collection.list}
+        persistedState={persistedState}
+        setPersistedState={setPersistedState}
+      />
     </>
   )
 }

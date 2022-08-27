@@ -7,14 +7,16 @@ import GridLayout from '../../components/GridLayout'
 import CardLink from '../../components/CardLink'
 import Modal from '../../components/Modal'
 import useModal from '../../hooks/useModal'
-import usePersistedState from '../../hooks/usePersistedState'
-import { editCollectionName } from '../../lib/utils'
+import { editCollectionName, removeAnimeFromCollections } from '../../lib/utils'
 import { MODAL_TYPE } from '../../constants'
-import type { AnimeListItem } from '../../types'
+import type { AnimeListItem, AnimeCollection } from '../../types'
+import type { SetPersistedState } from '../../hooks/usePersistedState'
 
 interface Props {
   name: string;
-  data: AnimeListItem[]
+  list: AnimeListItem[];
+  persistedState: AnimeCollection[];
+  setPersistedState: SetPersistedState;
 }
 
 const {
@@ -26,22 +28,28 @@ const _renderEmpty = () => (
   <h4>No Anime on this collections!</h4>
 )
 
-const _renderCollection = (item: AnimeListItem) => (
-  <CardLink
-    key={item.id}
-    link={`/anime/${item.id}`}
-    image={item.coverImage.large}
-    title={item.title.english}
-  />
+const _renderCollection = (item: AnimeListItem, openModal: (modalType: string, animeId: number) => void) => (
+  <div key={item.id}>
+    <CardLink
+      link={`/anime/${item.id}`}
+      image={item.coverImage.large}
+      title={item.title.english}
+    />
+    <button onClick={() => openModal(REMOVE_ANIME, item.id)}>Remove</button>
+  </div>
 )
 
-const CollectionDetail = ({ name, data }: Props) => {
+const CollectionDetail = ({ name, list, persistedState, setPersistedState }: Props) => {
   const router = useRouter()
   const { toggle, isShowing } = useModal()
   const [modalType, setModalType] = useState('')
-  const [persistedState, setPersistedState] = usePersistedState('anime-collections', [])
+  const [animeId, setAnimeId] = useState(0)
 
-  function openModal(type: string) {
+  function openModal(type: string, animeId?: number) {
+    if (animeId) {
+      setAnimeId(animeId)
+    }
+
     setModalType(type)
     toggle()
   }
@@ -53,7 +61,8 @@ const CollectionDetail = ({ name, data }: Props) => {
   }
 
   function handleRemoveAnime() {
-    
+    setPersistedState(removeAnimeFromCollections(persistedState, name, animeId))
+    toggle()
   }
 
   const getModal = {
@@ -83,7 +92,7 @@ const CollectionDetail = ({ name, data }: Props) => {
       <hr />
   
       <GridLayout>
-        {data.length === 0 ? _renderEmpty() : data.map(_renderCollection)}
+        {list.length === 0 ? _renderEmpty() : list.map((item) => _renderCollection(item, openModal))}
       </GridLayout>
   
       <Modal
