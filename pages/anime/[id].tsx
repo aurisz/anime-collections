@@ -1,10 +1,12 @@
+import { ReactElement } from 'react'
 import Head from 'next/head'
-import type { NextPage, GetServerSideProps } from 'next'
+import type { GetServerSideProps } from 'next'
 
 import client from '../../lib/apollo-client'
 import { GET_ANIME_DETAIL } from '../../graphql/getAnimeDetail.graphql';
 import AnimeDetail from '../../modules/AnimeDetail/AnimeDetail.component';
 import type { Media } from '../../types'
+import type { NextPageWithLayout } from '../_app'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context?.params?.id
@@ -30,7 +32,7 @@ interface Props {
   }
 }
 
-const Detail: NextPage<Props> = ({ animeDetail }) => {
+const Detail: NextPageWithLayout<Props> = ({ animeDetail }) => {
   return (
     <>
       <Head>
@@ -41,6 +43,10 @@ const Detail: NextPage<Props> = ({ animeDetail }) => {
       <AnimeDetail {...animeDetail} />
     </>
   )
+}
+
+Detail.getLayout = function getLayout(page: ReactElement) {
+  return page
 }
 
 export default Detail

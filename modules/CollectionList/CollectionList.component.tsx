@@ -1,4 +1,3 @@
-import Layout from '../../components/Layout'
 import GridLayout from '../../components/GridLayout'
 import Card from '../../components/Card'
 
@@ -20,18 +19,16 @@ interface Props {
 }
 
 const CollectionList = ({ collections }: Props) => (
-  <Layout>
-    <GridLayout>
-      {collections.map(collection => (
-        <Card
-          key={collection.name}
-          title={collection.name}
-          link={`/collection/${collection.name}`}
-          image={collection.list[0]?.coverImage.large}
-        />
-      ))}
-    </GridLayout>
-  </Layout>
+  <GridLayout>
+    {collections.map(collection => (
+      <Card
+        key={collection.name}
+        title={collection.name}
+        link={`/collection/${collection.name}`}
+        image={collection.list[0]?.coverImage.large}
+      />
+    ))}
+  </GridLayout>
 )
 
 export default CollectionList

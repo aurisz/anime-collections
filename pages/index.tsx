@@ -58,18 +58,16 @@ const Home: NextPage<Props> = ({ data }) => {
         <meta name="description" content="Anime List" />
       </Head>
       
-      <Layout>
-        <AnimeList data={animeList} />
+      <AnimeList data={animeList} />
         
-        <Pagination
-          currentPage={pageInfo.currentPage}
-          totalCount={pageInfo.total}
-          pageSize={pageInfo.perPage}
-          onPageChange={page => {
-            loadAnimes({ variables: { page, perPage: 10 }})
-          }}
-        />
-      </Layout>
+      <Pagination
+        currentPage={pageInfo.currentPage}
+        totalCount={pageInfo.total}
+        pageSize={pageInfo.perPage}
+        onPageChange={page => {
+          loadAnimes({ variables: { page, perPage: 10 }})
+        }}
+      />
     </>
   )
 }
