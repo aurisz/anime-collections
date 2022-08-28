@@ -2,6 +2,8 @@ import { useState, ChangeEvent } from 'react'
 
 import { isIncludeSpecialChar, isCollectionNameExists } from '../../lib/utils'
 import TextInput from '../../components/TextInput'
+import Button from '../../components/Button'
+import styles from './CollectionInput.styles'
 import type { AnimeCollection } from '../../types'
 
 interface Props {
@@ -36,13 +38,15 @@ const CollectionInput = ({ collections, onSubmit, initialValue = '', label }: Pr
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <TextInput value={value} onChange={handleChange} placeholder="Input Name" />
-        <button type="button" onClick={handleSubmit} disabled={!value}>
+      <form css={styles.formWrapper} onSubmit={handleSubmit}>
+        <div css={styles.inputWrapper}>
+          <TextInput value={value} onChange={handleChange} placeholder="Input Collection Name" />
+        </div>
+        <Button type="submit" onClick={handleSubmit} disabled={!value}>
           {label}
-        </button>
+        </Button>
       </form>
-      <span>{error}</span>
+      {error && <span>{error}</span>}
     </>
   )
 }

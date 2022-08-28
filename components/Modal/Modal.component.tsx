@@ -24,15 +24,14 @@ const Modal = ({ isShowing, onClose, children, title }: Props) => {
     <>
       <div css={styles.modalOverlay}/>
       <div css={styles.modalWrapper} aria-modal aria-hidden tabIndex={-1} role="dialog" onClick={onClose}>
-        <div css={styles.modal} onClick={e => e.stopPropagation()}>
-          <div>
-            <span>{title}</span>
+        <section css={styles.modal} onClick={e => e.stopPropagation()}>
+          <div css={styles.modalHeader}>
+            <p>{title}</p>
           </div>
-          <hr />
-          <div>
+          <div css={styles.modalContent}>
             {children}
           </div>
-        </div>
+        </section>
       </div>
     </>, document.body
   ) : null

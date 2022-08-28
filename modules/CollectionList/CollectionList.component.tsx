@@ -4,13 +4,15 @@ import toast from 'react-hot-toast'
 import CollectionRemove from '../CollectionRemove'
 import CollectionInput from '../CollectionInput'
 import GridLayout from '../../components/GridLayout'
-import CardLink from '../../components/CardLink/CardLink.component'
+import CardLink from '../../components/CardLink'
 import Modal from '../../components/Modal'
+import Button from '../../components/Button'
 import useModal from '../../hooks/useModal'
 import { MODAL_TYPE } from '../../constants'
 import { addCollections, editCollectionName, removeCollections } from '../../lib/utils'
 import type { AnimeCollection } from '../../types'
 import type { SetPersistedState } from '../../hooks/usePersistedState'
+import styles from './CollectionList.styles'
 
 interface Props {
   collections: AnimeCollection[];
@@ -58,7 +60,7 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
   const getModal = {
     [ADD_COLLECTION]: {
       title: 'Add New Collection',
-      content: <CollectionInput label="Add" onSubmit={handleAddCollection} collections={collections} />
+      content: <CollectionInput label="+ Add New Collection" onSubmit={handleAddCollection} collections={collections} />
     },
     [EDIT_COLLECTION]: {
       title: 'Edit Collection Name',
@@ -79,11 +81,11 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
 
   return (
     <>
-      <button onClick={() => openModal(ADD_COLLECTION)}>
-        Add a Collection
-      </button>
-
-      <hr />
+      <div css={styles.buttonContainer}>
+        <Button onClick={() => openModal(ADD_COLLECTION)}>
+          + Add a Collection
+        </Button>
+      </div>
 
       <GridLayout>
         {collections.length === 0 && <h4>No Collections Found</h4>}

@@ -7,11 +7,13 @@ import CollectionInput from '../CollectionInput'
 import GridLayout from '../../components/GridLayout'
 import CardLink from '../../components/CardLink'
 import Modal from '../../components/Modal'
+import Button from '../../components/Button'
 import useModal from '../../hooks/useModal'
 import { editCollectionName, removeAnimeFromCollections } from '../../lib/utils'
 import { MODAL_TYPE } from '../../constants'
 import type { AnimeListItem, AnimeCollection } from '../../types'
 import type { SetPersistedState } from '../../hooks/usePersistedState'
+import styles from './CollectionDetail.styles'
 
 interface Props {
   name: string;
@@ -36,7 +38,7 @@ const _renderCollection = (item: AnimeListItem, openModal: (modalType: string, a
       image={item.coverImage.large}
       title={item.title.english}
     />
-    <button onClick={() => openModal(REMOVE_ANIME, item.id)}>Remove</button>
+    <Button onClick={() => openModal(REMOVE_ANIME, item.id)}>Remove</Button>
   </div>
 )
 
@@ -73,7 +75,7 @@ const CollectionDetail = ({ name, list, persistedState, setPersistedState }: Pro
       title: 'Edit Collection Name',
       content: (
         <CollectionInput
-          label="Edit"
+          label="✎ Edit"
           onSubmit={handleEditCollection}
           initialValue={name}
           collections={persistedState}
@@ -87,12 +89,11 @@ const CollectionDetail = ({ name, list, persistedState, setPersistedState }: Pro
   }
 
   return (
-    <div>
-      <h4>Collection {name}</h4>
-
-      <button onClick={() => openModal(EDIT_COLLECTION)}>Edit Collection Name</button>
-
-      <hr />
+    <>
+      <div css={styles.header}>
+        <p>Collection {name}</p>
+        <div css={styles.edit} onClick={() => openModal(EDIT_COLLECTION)}>✎ Edit</div>
+      </div>
   
       <GridLayout>
         {list.length === 0 ? _renderEmpty() : list.map((item) => _renderCollection(item, openModal))}
@@ -105,7 +106,7 @@ const CollectionDetail = ({ name, list, persistedState, setPersistedState }: Pro
       >
         {getModal[modalType]?.content}
       </Modal>
-    </div>
+    </>
   )
 }
 

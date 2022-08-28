@@ -4,8 +4,8 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-const Button = ({ onClick, children }: Props) => (
-  <button css={styles} onClick={onClick}>
+const Button = ({ onClick, children, ...props }: Props) => (
+  <button css={styles} onClick={onClick} {...props}>
     {children}
   </button>
 )

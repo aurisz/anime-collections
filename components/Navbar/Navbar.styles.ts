@@ -17,7 +17,8 @@ const styles = {
     justify-content: space-around;
   `,
   navLink: ({ isActive }: { isActive: boolean }) => css`
-    color: ${isActive ? 'blue' : 'white'} 
+    color: ${isActive ? '#0072F5' : 'white'};
+    cursor: pointer;
   `,
 }
 

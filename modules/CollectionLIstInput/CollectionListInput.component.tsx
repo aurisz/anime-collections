@@ -1,5 +1,7 @@
 import CollectionInput from '../CollectionInput'
+import Button from '../../components/Button'
 import type { AnimeCollection } from '../../types'
+import styles from './CollectionListInput.styles';
 
 interface Props {
   collections: AnimeCollection[];
@@ -7,21 +9,21 @@ interface Props {
   onSave: (name: string) => void;
 }
 
-const CollectionListInput = ({ collections, onAdd, onSave }: Props) => {
-  return (
-    <div>
-      <CollectionInput label="Add" onSubmit={onAdd} collections={collections} />
+const CollectionListInput = ({ collections, onAdd, onSave }: Props) => (
+  <>
+    <CollectionInput label="+ Add New Collection" onSubmit={onAdd} collections={collections} />
 
-      <ul>
+    <div css={styles.listContainer}>
+      <p>Add To Existing Collections</p>
+      <div css={styles.collectionContainer}>
         {collections.map(({ name }) => (
-          <li key={name}>
-            <span>{name}</span>
-            <button type="button" onClick={() => onSave(name)}>Save</button>
-          </li>
+          <Button key={name} type="button" onClick={() => onSave(name)}>
+            {name}
+          </Button>
         ))}
-      </ul>
+      </div>
     </div>
-  )
-}
+  </>
+)
 
 export default CollectionListInput

@@ -10,6 +10,7 @@ const styles = {
     height: 100vh;
     background-color: #000;
     opacity: .5;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0s;
   `,
   modalWrapper: css`
     position: fixed;
@@ -28,16 +29,19 @@ const styles = {
   `,
   modal: css`
     z-index: 100;
-    background: white;
+    background: #16181A;
     position: relative;
-    border-radius: 8px;
+    border-radius: 16px;
     width: 500px;
     padding: 1rem;
-    color: black;
+    color: white;
   `,
   modalHeader: css`
-
+    text-align: center;
   `,
+  modalContent: css`
+    padding: 1rem;
+  `
 }
 
 export default styles
