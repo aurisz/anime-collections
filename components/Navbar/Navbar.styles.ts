@@ -15,7 +15,10 @@ const styles = {
     display: flex;
     list-style-type: none;
     justify-content: space-around;
-  `
+  `,
+  navLink: ({ isActive }: { isActive: boolean }) => css`
+    color: ${isActive ? 'blue' : 'white'} 
+  `,
 }
 
 export default styles;

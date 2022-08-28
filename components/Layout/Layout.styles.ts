@@ -5,6 +5,10 @@ const styles = {
     max-width: 1024px;
     margin: 0 auto;
     padding: 1rem;
+
+    h1 {
+      text-align: center;
+    }
   `
 }
 
