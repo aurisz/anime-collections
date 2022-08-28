@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import toast from 'react-hot-toast'
 
 import CollectionRemove from '../CollectionRemove'
 import CollectionInput from '../CollectionInput'
@@ -57,12 +58,14 @@ const CollectionDetail = ({ name, list, persistedState, setPersistedState }: Pro
   function handleEditCollection(newName: string) {
     setPersistedState(editCollectionName(persistedState, name, newName))
     toggle()
-    router.push(`/collection/${newName}`)
+    router.replace(`/collection/${newName}`)
+    toast.success(`Collection ${name} has been renamed to ${newName}`)
   }
 
   function handleRemoveAnime() {
     setPersistedState(removeAnimeFromCollections(persistedState, name, animeId))
     toggle()
+    toast.success(`Anime has been successfully removed`)
   }
 
   const getModal = {

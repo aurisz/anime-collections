@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 import CollectionRemove from '../CollectionRemove'
 import CollectionInput from '../CollectionInput'
@@ -39,16 +40,19 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
   function handleAddCollection(name: string) {
     setPersistedState(addCollections(collections, name))
     toggle()
+    toast.success(`Collection ${name} has been successfully added`)
   }
 
   function handleEditCollection(newName: string) {
     setPersistedState(editCollectionName(collections, selectedCollection, newName))
     toggle()
+    toast.success(`Collection ${selectedCollection} has been renamed to ${newName}`)
   }
 
   function handleRemoveCollection() {
     setPersistedState(removeCollections(collections, selectedCollection))
     toggle()
+    toast.success(`Collection ${selectedCollection} has been successfully removed`)
   }
 
   const getModal = {
@@ -82,6 +86,7 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
       <hr />
 
       <GridLayout>
+        {collections.length === 0 && <h4>No Collections Found</h4>}
         {collections.map(({ name, list }) => (
           <div key={name}>
             <CardLink

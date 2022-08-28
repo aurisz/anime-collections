@@ -1,5 +1,6 @@
 import parse from 'html-react-parser'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
 
 import styles from './AnimeDetail.styles'
 import useModal from '../../hooks/useModal'
@@ -33,7 +34,7 @@ const _renderCollections = (collections: AnimeCollection[]) => (
 )
 
 const AnimeDetail = (props: Props) => {
-  const {isShowing, toggle} = useModal();
+  const {isShowing, toggle} = useModal()
   const [collections, setCollections] = usePersistedState('anime-collections', [])
   const filteredCollections = filterCollectionsById(collections, props.id)
 
@@ -49,6 +50,7 @@ const AnimeDetail = (props: Props) => {
 
     setCollections(updateCollections(collections, collectionName, newList))
     toggle()
+    toast.success(`${props.title.english} has been added to collection ${collectionName}`)
   }
   
   return (

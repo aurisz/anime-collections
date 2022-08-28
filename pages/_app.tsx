@@ -2,6 +2,7 @@ import { ApolloProvider } from '@apollo/client'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import { Toaster } from 'react-hot-toast'
 
 import '../styles/globals.css'
 import apolloClient from '../lib/apollo-client'
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <ApolloProvider client={apolloClient}>
       {getLayout(<Component {...pageProps} />)}
+      <Toaster />
     </ApolloProvider>
   )
 }

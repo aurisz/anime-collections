@@ -1,4 +1,4 @@
-import CollectionInput from '../CollectionInput';
+import CollectionInput from '../CollectionInput'
 import type { AnimeCollection } from '../../types'
 
 interface Props {
