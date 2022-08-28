@@ -57,7 +57,7 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
 
   const getModal = {
     [ADD_COLLECTION]: {
-      title: 'Add a Collection',
+      title: 'Add New Collection',
       content: <CollectionInput label="Add" onSubmit={handleAddCollection} collections={collections} />
     },
     [EDIT_COLLECTION]: {
