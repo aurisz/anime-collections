@@ -77,7 +77,7 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
       title: 'Edit Collection Name',
       content: (
         <CollectionInput
-          label="Edit"
+          label="✎ Edit"
           onSubmit={handleEditCollection}
           initialValue={selectedCollection}
           collections={collections}

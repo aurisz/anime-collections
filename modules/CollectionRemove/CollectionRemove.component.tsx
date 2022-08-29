@@ -1,4 +1,5 @@
 import { Button } from '../../components'
+import styles from './CollectionRemove.styles'
 
 interface Props {
   onRemove: () => void;
@@ -7,7 +8,7 @@ interface Props {
 const CollectionRemove = ({ onRemove }: Props) => (
   <>
     <p>Are you sure want to remove this?</p>
-    <Button onClick={onRemove}>REMOVE</Button>
+    <Button css={styles.button} onClick={onRemove}>REMOVE</Button>
   </>
 )
 

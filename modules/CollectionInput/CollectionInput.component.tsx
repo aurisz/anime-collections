@@ -23,12 +23,12 @@ const CollectionInput = ({ collections, onSubmit, initialValue = '', label }: Pr
   function handleSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
     if (isIncludeSpecialChar(value)) {
-      setError('collection name must not include special char!')
+      setError('Collection name must not include special char!')
       return
     }
 
     if (isCollectionNameExists(collections, value)) {
-      setError('collection name must be unique!')
+      setError('Collection name must be unique!')
       return
     }
     
@@ -36,17 +36,15 @@ const CollectionInput = ({ collections, onSubmit, initialValue = '', label }: Pr
   }
 
   return (
-    <>
-      <form css={styles.formWrapper} onSubmit={handleSubmit}>
-        <div css={styles.inputWrapper}>
-          <TextInput value={value} onChange={handleChange} placeholder="Input Collection Name" />
-        </div>
-        <Button type="submit" onClick={handleSubmit} disabled={!value}>
-          {label}
-        </Button>
-      </form>
-      {error && <span>{error}</span>}
-    </>
+    <form css={styles.formWrapper} onSubmit={handleSubmit}>
+      <div css={styles.inputWrapper}>
+        <TextInput value={value} onChange={handleChange} placeholder="Input Collection Name" />
+      </div>
+      {error && <p>{error}</p>}
+      <Button type="submit" onClick={handleSubmit} disabled={!value}>
+        {label}
+      </Button>
+    </form>
   )
 }
 
