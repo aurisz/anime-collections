@@ -1,12 +1,13 @@
-import { GridLayout, CardLink } from '../../components'
+import { GridList, CardLink } from '../../components'
 import type { AnimeListItem } from '../../types'
 
 interface Props {
-  data: AnimeListItem[]
+  data: AnimeListItem[];
+  loading: boolean;
 }
 
-const AnimeList = ({ data }: Props) => (
-  <GridLayout>
+const AnimeList = ({ data, loading }: Props) => (
+  <GridList loading={loading}>
     {data.map(item => (
       <CardLink
         key={item.id}
@@ -15,7 +16,7 @@ const AnimeList = ({ data }: Props) => (
         title={item.title.english}
       />
     ))}
-  </GridLayout>
+  </GridList>
 )
 
 export default AnimeList

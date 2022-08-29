@@ -36,10 +36,8 @@ const Home: NextPage<Props> = ({ data }) => {
 
   let animeList = data.media
   let pageInfo = data.pageInfo
-
-  if (called && loading) return <p>Loading ...</p>
   
-  if (called) {
+  if (called && !loading) {
     const { Page } = clientData
 
     animeList = Page.media
@@ -57,16 +55,18 @@ const Home: NextPage<Props> = ({ data }) => {
         <meta name="description" content="Anime List" />
       </Head>
       
-      <AnimeList data={animeList} />
+      <AnimeList data={animeList} loading={loading} />
         
-      <Pagination
-        currentPage={pageInfo.currentPage}
-        totalCount={pageInfo.total}
-        pageSize={pageInfo.perPage}
-        onPageChange={page => {
-          loadAnimes({ variables: { page, perPage: 10 }})
-        }}
-      />
+      {!loading && (
+        <Pagination
+          currentPage={pageInfo.currentPage}
+          totalCount={pageInfo.total}
+          pageSize={pageInfo.perPage}
+          onPageChange={page => {
+            loadAnimes({ variables: { page, perPage: 10 }})
+          }}
+        />
+      )}
     </>
   )
 }
