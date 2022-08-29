@@ -13,7 +13,6 @@ const styles = {
     padding: 0 12px;
     height: 32px;
     text-align: center;
-    // margin: auto 4px;
     color: white;
     display: flex;
     box-sizing: border-box;

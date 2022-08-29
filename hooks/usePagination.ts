@@ -45,8 +45,8 @@ const usePagination = ({
       after/before the left/right page count as that would lead to a change if our Pagination
       component size which we do not want
     */
-    const shouldShowLeftDots = leftSiblingIndex > 2
-    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 2
+    const shouldShowLeftDots = leftSiblingIndex > 1
+    const shouldShowRightDots = rightSiblingIndex < totalPageCount - 1
 
     const firstPageIndex = 1
     const lastPageIndex = totalPageCount

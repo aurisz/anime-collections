@@ -10,7 +10,7 @@ interface Props {
   onPageChange: OnPageChange;
 }
 
-const _renderDots = (key: string) => <li key={key} css={[styles.item, styles.dots]}>…</li>
+const _renderDots = () => <li css={[styles.item, styles.dots]}>…</li>
 
 const _renderPageNumber = (
   pageNumber: number, isCurrentPage: boolean, onPageChange: OnPageChange
@@ -60,7 +60,7 @@ const Pagination = ({
     <ul css={styles.container}>
       {!isFirstPage && _renderPrevNext('❮', onPrevious)}
       {paginationRange.map(pageNumber => {
-        if (pageNumber === DOTS) return _renderDots(pageNumber)
+        if (pageNumber === DOTS) return _renderDots()
 
         if (typeof pageNumber === 'number') {
           const isCurrentPage = currentPage === pageNumber
