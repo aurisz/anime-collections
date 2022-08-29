@@ -31,13 +31,13 @@ const styles = {
     background: rgba(255, 255, 255, 0.35);
   `,
   shimmerImage: css`
-    width: 100%;
-    height: 80%;
+    width: 90%;
+    height: 70%;
     border-radius: 8px;
   `,
   shimmerTitle: css`
     height: 10%;
-    width: 100%;
+    width: 90%;
     margin-top: 1rem;
     border-radius: 8px;
   `
