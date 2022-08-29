@@ -1,21 +1,34 @@
-export type AnimeListItem = {
-  id: number,
+export interface AnimeListItem {
+  id: number;
   title: {
-    english: string
-  }
+    english: string;
+  };
   coverImage: {
-    large: string,
-  },
+    large: string;
+  };
 }
 
-export type AnimeCollection = {
+export interface AnimeDetail extends AnimeListItem {
+  bannerImage: string;
+  description: string;
+  genres: string[];
+  averageScore: number;
+  seasonYear: number;
+  episodes: number;
+  duration: number;
+  trailer: {
+    id: string;
+  }
+}
+
+export interface AnimeCollection {
   name: string;
-  list: AnimeListItem[]
+  list: AnimeListItem[];
 }
 
-export type PageInfo = {
-  total: number,
-  currentPage: number,
-  lastPage: number,
-  perPage: number,
+export interface PageInfo {
+  total: number;
+  currentPage: number;
+  lastPage: number;
+  perPage: number;
 }

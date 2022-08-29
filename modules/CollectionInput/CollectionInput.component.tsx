@@ -1,8 +1,7 @@
 import { useState, ChangeEvent } from 'react'
 
 import { isIncludeSpecialChar, isCollectionNameExists } from '../../lib/utils'
-import TextInput from '../../components/TextInput'
-import Button from '../../components/Button'
+import { Button, TextInput } from '../../components'
 import styles from './CollectionInput.styles'
 import type { AnimeCollection } from '../../types'
 

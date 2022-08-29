@@ -2,12 +2,13 @@ import Navbar from '../Navbar'
 import styles from './Layout.styles'
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
+  title: string;
 }
 
-const Layout = ({ children }: Props) => (
+const Layout = ({ children, title }: Props) => (
   <main css={styles.container}>
-    <h1>Anime List</h1>
+    <h1>{title}</h1>
     <Navbar />
     {children}
   </main>

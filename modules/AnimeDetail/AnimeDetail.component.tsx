@@ -3,28 +3,11 @@ import Link from 'next/link'
 import toast from 'react-hot-toast'
 
 import styles from './AnimeDetail.styles'
-import useModal from '../../hooks/useModal'
-import Modal from '../../components/Modal/Modal.component'
-import YoutubeEmbed from '../../components/YoutubeEmbed'
-import Button from '../../components/Button'
-import SectionItem from '../../components/SectionItem'
 import CollectionListInput from '../CollectionLIstInput'
+import { Modal, Button, SectionItem, YoutubeEmbed } from '../../components'
+import { useModal, usePersistedState } from '../../hooks'
 import { filterCollectionsById, updateCollections, addCollections } from '../../lib/utils'
-import usePersistedState from '../../hooks/usePersistedState'
-import type { AnimeListItem, AnimeCollection } from '../../types'
-
-interface Props extends AnimeListItem {
-  bannerImage: string;
-  description: string;
-  genres: string[];
-  averageScore: number;
-  seasonYear: number;
-  episodes: number;
-  duration: number;
-  trailer: {
-    id: string;
-  }
-}
+import type { AnimeDetail as Props, AnimeCollection } from '../../types'
 
 const _renderEmptyCollections = () => (
   <p>Not added in any collections yet</p>

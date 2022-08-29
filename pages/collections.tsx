@@ -3,7 +3,7 @@ import Head from 'next/head'
 import type { NextPage } from 'next'
 
 import CollectionList from '../modules/CollectionList'
-import usePersistedState from '../hooks/usePersistedState'
+import { usePersistedState } from '../hooks'
 
 const CollectionsListPage: NextPage = () => {
   const [collections, setCollections] = useState([])

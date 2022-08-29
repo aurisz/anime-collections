@@ -1,12 +1,14 @@
+import styles from './CollectionListInput.styles'
 import CollectionInput from '../CollectionInput'
-import Button from '../../components/Button'
+import { Button } from '../../components'
 import type { AnimeCollection } from '../../types'
-import styles from './CollectionListInput.styles';
+
+type Action = (name: string) => void;
 
 interface Props {
   collections: AnimeCollection[];
-  onAdd: (name: string) => void;
-  onSave: (name: string) => void;
+  onAdd: Action;
+  onSave: Action;
 }
 
 const CollectionListInput = ({ collections, onAdd, onSave }: Props) => (

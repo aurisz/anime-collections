@@ -1,12 +1,12 @@
 import { ApolloProvider } from '@apollo/client'
+import { Toaster } from 'react-hot-toast'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
-import { Toaster } from 'react-hot-toast'
 
 import '../styles/globals.css'
 import apolloClient from '../lib/apollo-client'
-import Layout from '../components/Layout'
+import { Layout } from '../components'
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -17,7 +17,7 @@ type AppPropsWithLayout = AppProps & {
 }
 
 const commonLayout = (page: ReactElement) => (
-  <Layout>
+  <Layout title="Anime List">
     {page}
   </Layout>
 )

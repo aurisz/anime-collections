@@ -2,7 +2,7 @@ import Head from 'next/head'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
-import usePersistedState from '../../hooks/usePersistedState'
+import { usePersistedState } from '../../hooks'
 import { getCollectionByName } from '../../lib/utils'
 import CollectionDetail from '../../modules/CollectionDetail'
 

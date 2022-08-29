@@ -1,16 +1,38 @@
-import { usePagination, DOTS } from '../../hooks/usePagination'
 import styles from './Pagination.styles'
-import type { Props } from './Pagination.types'
+import usePagination, { DOTS } from '../../hooks/usePagination'
 
-const Pagination = (props: Props) => {
-  const {
-    onPageChange,
-    totalCount,
-    currentPage,
-    pageSize,
-    siblingCount = 1,
-  } = props
+type OnPageChange = (page: number) => void;
+interface Props {
+  totalCount: number;
+  currentPage: number;
+  pageSize: number;
+  siblingCount?: number;
+  onPageChange: OnPageChange;
+}
 
+const _renderDots = (key: string) => <li key={key} css={[styles.item, styles.dots]}>…</li>
+
+const _renderPageNumber = (
+  pageNumber: number, isCurrentPage: boolean, onPageChange: OnPageChange
+) => (
+  <li
+    key={pageNumber}
+    css={[styles.item, isCurrentPage && styles.itemSelected]}
+    onClick={() => onPageChange(pageNumber)}
+  >
+    {pageNumber}
+  </li>
+)
+
+const _renderPrevNext = (icon: string, onClick: () => void) => <li css={styles.item} onClick={onClick}>{icon}</li>
+
+const Pagination = ({
+  onPageChange,
+  totalCount,
+  currentPage,
+  pageSize,
+  siblingCount = 1,
+}: Props) => {
   const paginationRange = usePagination({
     currentPage,
     totalCount,
@@ -36,25 +58,18 @@ const Pagination = (props: Props) => {
 
   return (
     <ul css={styles.container}>
-      {!isFirstPage && <li css={styles.item} onClick={onPrevious}>❮</li>}
+      {!isFirstPage && _renderPrevNext('❮', onPrevious)}
       {paginationRange.map(pageNumber => {
-        if (pageNumber === DOTS) {
-          return <li key={pageNumber} css={[styles.item, styles.dots]}>…</li>;
-        }
+        if (pageNumber === DOTS) return _renderDots(pageNumber)
 
         if (typeof pageNumber === 'number') {
-          return (
-            <li
-              key={pageNumber}
-              css={[styles.item, currentPage === pageNumber && styles.itemSelected]}
-              onClick={() => onPageChange(pageNumber)}
-            >
-              {pageNumber}
-            </li>
-          );
+          const isCurrentPage = currentPage === pageNumber
+          return _renderPageNumber(pageNumber, isCurrentPage, onPageChange)
         }
+
+        return null
       })}
-      {!isLastPage && <li css={styles.item} onClick={onNext}>❯</li>}
+      {!isLastPage && _renderPrevNext('❯', onNext)}
     </ul>
   );
 };

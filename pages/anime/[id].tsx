@@ -3,9 +3,9 @@ import Head from 'next/head'
 import type { GetServerSideProps } from 'next'
 
 import client from '../../lib/apollo-client'
-import { GET_ANIME_DETAIL } from '../../graphql/getAnimeDetail.graphql';
-import AnimeDetail from '../../modules/AnimeDetail/AnimeDetail.component';
-import type { Media } from '../../types'
+import { GET_ANIME_DETAIL } from '../../graphql/getAnimeDetail.gql';
+import AnimeDetail from '../../modules/AnimeDetail';
+import type { AnimeDetail as AnimeDetailType } from '../../types'
 import type { NextPageWithLayout } from '../_app'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -24,15 +24,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 interface Props {
-  animeDetail: {
-    media: Media & {
-      bannerImage: string,
-      genres: string[]
-    }
-  }
+  animeDetail: AnimeDetailType
 }
 
-const Detail: NextPageWithLayout<Props> = ({ animeDetail }) => {
+const AnimeDetailPage: NextPageWithLayout<Props> = ({ animeDetail }: Props) => {
   return (
     <>
       <Head>
@@ -45,8 +40,8 @@ const Detail: NextPageWithLayout<Props> = ({ animeDetail }) => {
   )
 }
 
-Detail.getLayout = function getLayout(page: ReactElement) {
+AnimeDetailPage.getLayout = function getLayout(page: ReactElement) {
   return page
 }
 
-export default Detail
+export default AnimeDetailPage

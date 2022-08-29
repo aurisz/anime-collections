@@ -3,11 +3,10 @@ import type { NextPage } from 'next'
 import { useLazyQuery } from '@apollo/client'
 
 import client from '../lib/apollo-client'
-import { GET_ANIME_LIST } from '../graphql/getAnimeList.graphql'
+import { GET_ANIME_LIST } from '../graphql/getAnimeList.gql'
 import AnimeList from '../modules/AnimeList'
-import Pagination from '../components/Pagination'
-import Layout from '../components/Layout'
-import type { Media, PageInfo } from '../types'
+import { Pagination } from '../components'
+import type { AnimeListItem, PageInfo } from '../types'
 
 export async function getServerSideProps() {
   const { data } = await client.query({
@@ -28,7 +27,7 @@ export async function getServerSideProps() {
 interface Props {
   data: {
     pageInfo: PageInfo,
-    media: Media[]
+    media: AnimeListItem[]
   }
 }
 

@@ -5,7 +5,7 @@ interface Props {
 }
 
 const GridLayout = ({ children }: Props) => (
-  <div css={styles.gridContainer}>
+  <div css={styles}>
     {children}
   </div>
 )

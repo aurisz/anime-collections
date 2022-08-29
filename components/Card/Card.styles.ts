@@ -4,10 +4,6 @@ const styles = {
   gridItem: css`
     cursor: pointer;
 
-    span {
-      display: block;
-    }
-
     img {
       object-fit: fill;
       border-radius: 8px;

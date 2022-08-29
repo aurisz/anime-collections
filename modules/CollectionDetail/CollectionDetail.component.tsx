@@ -2,18 +2,15 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 
+import styles from './CollectionDetail.styles'
 import CollectionRemove from '../CollectionRemove'
 import CollectionInput from '../CollectionInput'
-import GridLayout from '../../components/GridLayout'
-import CardLink from '../../components/CardLink'
-import Modal from '../../components/Modal'
-import Button from '../../components/Button'
-import useModal from '../../hooks/useModal'
+import { GridLayout, CardLink, Modal, Button } from '../../components'
+import { useModal } from '../../hooks'
 import { editCollectionName, removeAnimeFromCollections } from '../../lib/utils'
 import { MODAL_TYPE } from '../../constants'
 import type { AnimeListItem, AnimeCollection } from '../../types'
 import type { SetPersistedState } from '../../hooks/usePersistedState'
-import styles from './CollectionDetail.styles'
 
 interface Props {
   name: string;

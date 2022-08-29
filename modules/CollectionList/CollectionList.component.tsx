@@ -1,18 +1,15 @@
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 
+import styles from './CollectionList.styles'
 import CollectionRemove from '../CollectionRemove'
 import CollectionInput from '../CollectionInput'
-import GridLayout from '../../components/GridLayout'
-import CardLink from '../../components/CardLink'
-import Modal from '../../components/Modal'
-import Button from '../../components/Button'
-import useModal from '../../hooks/useModal'
+import { GridLayout, Modal, Button, CardLink } from '../../components'
+import { useModal } from '../../hooks'
 import { MODAL_TYPE } from '../../constants'
 import { addCollections, editCollectionName, removeCollections } from '../../lib/utils'
 import type { AnimeCollection } from '../../types'
 import type { SetPersistedState } from '../../hooks/usePersistedState'
-import styles from './CollectionList.styles'
 
 interface Props {
   collections: AnimeCollection[];

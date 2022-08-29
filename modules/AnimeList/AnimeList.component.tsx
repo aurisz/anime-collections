@@ -1,7 +1,9 @@
-import GridLayout from '../../components/GridLayout'
-import CardLink from '../../components/CardLink'
+import { GridLayout, CardLink } from '../../components'
+import type { AnimeListItem } from '../../types'
 
-import type { Props } from './AnimeList.types';
+interface Props {
+  data: AnimeListItem[]
+}
 
 const AnimeList = ({ data }: Props) => (
   <GridLayout>

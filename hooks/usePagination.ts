@@ -14,7 +14,7 @@ interface PaginationProps {
   siblingCount: number;
 }
 
-export const usePagination = ({
+const usePagination = ({
   totalCount,
   pageSize,
   currentPage,
@@ -77,3 +77,5 @@ export const usePagination = ({
 
   return paginationRange
 }
+
+export default usePagination
