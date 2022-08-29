@@ -15,6 +15,7 @@ export const GET_ANIME_DETAIL = gql`
       bannerImage
       description
       episodes
+      duration
       seasonYear
       trailer {
         id

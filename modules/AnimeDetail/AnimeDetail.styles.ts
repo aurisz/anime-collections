@@ -27,22 +27,25 @@ const styles = {
   infoContainer: css`
     display: flex;
     align-items: center;
-    gap: 1rem;
-  `,
-  videoResponsive: css`
-    overflow: hidden;
-    padding-bottom: 56.25%;
-    position: relative;
-    height: 0;
+    gap: 0.5rem;
+    font-weight: 400;
+    color: #8197a4;
 
-    iframe {
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 100%;
-      position: absolute;
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
     }
-  `
+  `,
+  collectionContainer: css`
+    display: flex;
+    gap: 0.5rem;
+    color: #0072F5;
+    cursor: pointer;
+
+    p {
+      margin-top: 0;
+    }
+  `,
 }
 
 export default styles

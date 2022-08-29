@@ -5,6 +5,9 @@ import toast from 'react-hot-toast'
 import styles from './AnimeDetail.styles'
 import useModal from '../../hooks/useModal'
 import Modal from '../../components/Modal/Modal.component'
+import YoutubeEmbed from '../../components/YoutubeEmbed'
+import Button from '../../components/Button'
+import SectionItem from '../../components/SectionItem'
 import CollectionListInput from '../CollectionLIstInput'
 import { filterCollectionsById, updateCollections, addCollections } from '../../lib/utils'
 import usePersistedState from '../../hooks/usePersistedState'
@@ -14,6 +17,10 @@ interface Props extends AnimeListItem {
   bannerImage: string;
   description: string;
   genres: string[];
+  averageScore: number;
+  seasonYear: number;
+  episodes: number;
+  duration: number;
   trailer: {
     id: string;
   }
@@ -23,14 +30,17 @@ const _renderEmptyCollections = () => (
   <p>Not added in any collections yet</p>
 )
 
-const _renderCollections = (collections: AnimeCollection[]) => (
-  collections.map(({ name }) => (
-    <Link key={name} href={`/collection/${name}`}>
-      <a>
-        <p>{name}</p>
-      </a>
-    </Link>
-  ))
+const _renderCollections = (collections: AnimeCollection[], toggle: () => void) => (
+  <>
+    <div css={styles.collectionContainer}>
+      {collections.map(({ name }) => (
+        <Link key={name} href={`/collection/${name}`}>
+          <p>{name}</p>
+        </Link>
+      ))}
+    </div>
+    <Button onClick={toggle}>+ Add to Collection</Button>
+  </>
 )
 
 const AnimeDetail = (props: Props) => {
@@ -58,32 +68,30 @@ const AnimeDetail = (props: Props) => {
       <picture css={styles.imageContainer}>
         <img css={styles.bannerImage} src={props.bannerImage} alt={props.title.english} />
       </picture>
+      
       <div css={styles.content}>
-        <h2>{props.title.english}</h2>
+        <h1>{props.title.english}</h1>
+
+        <div css={styles.infoContainer}>
+          <p>★ {props.averageScore}</p>
+          <p>• {props.seasonYear}</p>
+          <p>• {props.episodes} episodes</p>
+          <p>• {props.duration} mins</p>
+        </div>
+
         <p>{parse(props.description)}</p>
-        <div>
-          <h4>Collections</h4>
-          <div>{filteredCollections.length === 0 ? _renderEmptyCollections() : _renderCollections(filteredCollections)}</div>
-          <button onClick={toggle}>Add to Collection</button>
-        </div>
-        <div>
-          <h4>Genres</h4>
-          <p>{props.genres.join(', ')}</p>
-        </div>
-        <div>
-          <h4>Video</h4>
-          <div css={styles.videoResponsive}>
-            <iframe
-              width="853"
-              height="480"
-              src={`https://www.youtube.com/embed/${props.trailer.id}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Embedded youtube"
-            />
-          </div>
-        </div>
+
+        <SectionItem label="Genres">
+          {props.genres.join(', ')}
+        </SectionItem>
+
+        <SectionItem label="Collections">
+          <div>{filteredCollections.length === 0 ? _renderEmptyCollections() : _renderCollections(filteredCollections, toggle)}</div>
+        </SectionItem>
+
+        <SectionItem label="Video">
+          <YoutubeEmbed id={props.trailer.id} />
+        </SectionItem>
       </div>
 
       <Modal
