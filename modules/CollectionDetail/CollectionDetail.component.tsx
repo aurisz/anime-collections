@@ -5,7 +5,8 @@ import toast from 'react-hot-toast'
 import styles from './CollectionDetail.styles'
 import CollectionRemove from '../CollectionRemove'
 import CollectionInput from '../CollectionInput'
-import { GridLayout, CardLink, Modal, Button } from '../../components'
+import CollectionCard from '../CollectionCard'
+import { GridLayout, Modal } from '../../components'
 import { useModal } from '../../hooks'
 import { editCollectionName, removeAnimeFromCollections } from '../../lib/utils'
 import { MODAL_TYPE } from '../../constants'
@@ -29,14 +30,13 @@ const _renderEmpty = () => (
 )
 
 const _renderCollection = (item: AnimeListItem, openModal: (modalType: string, animeId: number) => void) => (
-  <div key={item.id}>
-    <CardLink
-      link={`/anime/${item.id}`}
-      image={item.coverImage.large}
-      title={item.title.english}
-    />
-    <Button onClick={() => openModal(REMOVE_ANIME, item.id)}>Remove</Button>
-  </div>
+  <CollectionCard
+    key={item.id}
+    link={`/anime/${item.id}`}
+    image={item.coverImage.large}
+    title={item.title.english}
+    onRemove={() => openModal(REMOVE_ANIME, item.id)}
+  />
 )
 
 const CollectionDetail = ({ name, list, persistedState, setPersistedState }: Props) => {

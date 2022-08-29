@@ -1,11 +1,13 @@
+import { Button } from '../../components'
+
 interface Props {
   onRemove: () => void;
 }
 
 const CollectionRemove = ({ onRemove }: Props) => (
   <>
-    <p>Are you sure want to remove this collection?</p>
-    <button onClick={onRemove}>REMOVE</button>
+    <p>Are you sure want to remove this?</p>
+    <Button onClick={onRemove}>REMOVE</Button>
   </>
 )
 
