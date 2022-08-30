@@ -10,13 +10,11 @@ interface Props {
   onPageChange: OnPageChange;
 }
 
-const _renderDots = () => <li css={[styles.item, styles.dots]}>…</li>
-
 const _renderPageNumber = (
-  pageNumber: number, isCurrentPage: boolean, onPageChange: OnPageChange
+  pageNumber: number, isCurrentPage: boolean, onPageChange: OnPageChange, index: number
 ) => (
   <li
-    key={pageNumber}
+    key={index}
     css={[styles.item, isCurrentPage && styles.itemSelected]}
     onClick={() => onPageChange(pageNumber)}
   >
@@ -24,7 +22,11 @@ const _renderPageNumber = (
   </li>
 )
 
-const _renderPrevNext = (icon: string, onClick: () => void) => <li css={styles.item} onClick={onClick}>{icon}</li>
+const _renderDots = (index: number) => <li key={index} css={[styles.item, styles.dots]}>…</li>
+
+const _renderPrevNext = (icon: string, onClick: () => void) => (
+  <li key={icon} css={styles.item} onClick={onClick}>{icon}</li>
+)
 
 const Pagination = ({
   onPageChange,
@@ -59,12 +61,12 @@ const Pagination = ({
   return (
     <ul css={styles.container}>
       {!isFirstPage && _renderPrevNext('❮', onPrevious)}
-      {paginationRange.map(pageNumber => {
-        if (pageNumber === DOTS) return _renderDots()
+      {paginationRange.map((pageNumber, index) => {
+        if (pageNumber === DOTS) return _renderDots(index)
 
         if (typeof pageNumber === 'number') {
           const isCurrentPage = currentPage === pageNumber
-          return _renderPageNumber(pageNumber, isCurrentPage, onPageChange)
+          return _renderPageNumber(pageNumber, isCurrentPage, onPageChange, index)
         }
 
         return null
