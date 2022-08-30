@@ -2,8 +2,8 @@ import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 
-import AnimeListPage from '../index'
-import { GET_ANIME_LIST } from '../../queries'
+import AnimeListPage from '../pages/index'
+import { GET_ANIME_LIST } from '../queries'
 
 const mockResolvedData = {
   pageInfo: {

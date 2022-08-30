@@ -18,7 +18,7 @@ describe('usePersistedState', () => {
     const [, setValue] = result.current
     
     act(() => {
-      setValue(expectedResult as [])
+      setValue(expectedResult)
     })
 
     expect(localStorage.setItem).toBeCalledWith('test', JSON.stringify(expectedResult))
