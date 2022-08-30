@@ -11,13 +11,12 @@ import { useModal } from '../../hooks'
 import { editCollectionName, removeAnimeFromCollections } from '../../lib/utils'
 import { MODAL_TYPE } from '../../constants'
 import type { AnimeListItem, AnimeCollection } from '../../types'
-import type { SetPersistedState } from '../../hooks/usePersistedState'
 
 interface Props {
   name: string;
   list: AnimeListItem[];
   persistedState: AnimeCollection[];
-  setPersistedState: SetPersistedState;
+  setPersistedState: (state: AnimeCollection[]) => void;
 }
 
 const {

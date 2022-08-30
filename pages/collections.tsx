@@ -4,14 +4,13 @@ import type { NextPage } from 'next'
 
 import CollectionList from '../modules/CollectionList'
 import { usePersistedState } from '../hooks'
+import type { AnimeCollection } from '../types'
 
 const CollectionsListPage: NextPage = () => {
   const [collections, setCollections] = useState([])
-  const [persistedState, setPersistedState] = usePersistedState('anime-collections', [])
+  const [persistedState, setPersistedState] = usePersistedState<AnimeCollection[]>('anime-collections', [])
   
-  useEffect(() => {
-    setCollections(persistedState)
-  }, [persistedState])
+  useEffect(() => setCollections(persistedState as []), [persistedState])
 
   return (
     <>

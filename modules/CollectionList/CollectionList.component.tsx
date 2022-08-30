@@ -10,11 +10,10 @@ import { useModal } from '../../hooks'
 import { MODAL_TYPE } from '../../constants'
 import { addCollections, editCollectionName, removeCollections } from '../../lib/utils'
 import type { AnimeCollection } from '../../types'
-import type { SetPersistedState } from '../../hooks/usePersistedState'
 
 interface Props {
   collections: AnimeCollection[];
-  setPersistedState: SetPersistedState;
+  setPersistedState: (state: AnimeCollection[]) => void;
 }
 
 const {

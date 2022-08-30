@@ -27,13 +27,11 @@ const _renderCollections = (collections: AnimeCollection[]) => (
 const AnimeDetail = (props: Props) => {
   const {isShowing, toggle} = useModal()
   const [collections, setCollections] = useState([])
-  const [persistedState, setPersistedState] = usePersistedState('anime-collections', [])
+  const [persistedState, setPersistedState] = usePersistedState<AnimeCollection[]>('anime-collections', [])
 
   const filteredCollections = filterCollectionsById(collections, props.id)
 
-  useEffect(() => {
-    setCollections(persistedState)
-  }, [persistedState])
+  useEffect(() => setCollections(persistedState as []), [persistedState])
 
   function handleAddCollection(name: string) {
     setPersistedState(addCollections(collections, name))

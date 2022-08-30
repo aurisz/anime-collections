@@ -3,12 +3,12 @@ import styles from './CollectionCard.styles'
 import type { CardLinkProps } from '../../components/CardLink'
 
 interface Props extends CardLinkProps {
-  count: number;
+  count?: number;
   onEdit?: () => void;
   onRemove?: () => void;
 }
 
-const CollectionCard = ({ title, link, image, count, onEdit, onRemove }: Props) => (
+const CollectionCard = ({ title, link, image, count = 0, onEdit, onRemove }: Props) => (
   <div css={styles.container}>
     <CardLink
       title={title}

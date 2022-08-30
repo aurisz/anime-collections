@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@apollo/client": "^3.6.9",
