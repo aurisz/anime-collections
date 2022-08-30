@@ -76,7 +76,7 @@ const AnimeDetail = (props: Props) => {
         </SectionItem>
 
         <SectionItem label="Video">
-          <YoutubeEmbed id={props.trailer.id} />
+          <YoutubeEmbed id={props.trailer?.id} />
         </SectionItem>
       </div>
 

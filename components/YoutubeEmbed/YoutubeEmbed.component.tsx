@@ -4,7 +4,7 @@ interface Props {
   id: string;
 }
 
-const YoutubeEmbed = ({ id }: Props) => (
+const YoutubeEmbed = ({ id }: Props) => id ? (
   <div css={styles}>
     <iframe
       width="853"
@@ -16,6 +16,6 @@ const YoutubeEmbed = ({ id }: Props) => (
       title="Embedded youtube"
     />
   </div>
-)
+) : <p>No Video Found</p>
 
 export default YoutubeEmbed
