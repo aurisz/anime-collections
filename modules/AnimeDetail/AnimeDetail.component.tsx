@@ -13,17 +13,14 @@ const _renderEmptyCollections = () => (
   <p>Not added in any collections yet</p>
 )
 
-const _renderCollections = (collections: AnimeCollection[], toggle: () => void) => (
-  <>
-    <div css={styles.collectionContainer}>
-      {collections.map(({ name }) => (
-        <Link key={name} href={`/collection/${name}`}>
-          <p>{name}</p>
-        </Link>
-      ))}
-    </div>
-    <Button onClick={toggle}>+ Add to Collection</Button>
-  </>
+const _renderCollections = (collections: AnimeCollection[]) => (
+  <div css={styles.collectionContainer}>
+    {collections.map(({ name }) => (
+      <Link key={name} href={`/collection/${name}`}>
+        <p>{name}</p>
+      </Link>
+    ))}
+  </div>
 )
 
 const AnimeDetail = (props: Props) => {
@@ -69,7 +66,8 @@ const AnimeDetail = (props: Props) => {
         </SectionItem>
 
         <SectionItem label="Collections">
-          <div>{filteredCollections.length === 0 ? _renderEmptyCollections() : _renderCollections(filteredCollections, toggle)}</div>
+          {filteredCollections.length === 0 ? _renderEmptyCollections() : _renderCollections(filteredCollections)}
+          <Button onClick={toggle}>+ Add to Collection</Button>
         </SectionItem>
 
         <SectionItem label="Video">
