@@ -1,5 +1,6 @@
-import parse from 'html-react-parser'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import parse from 'html-react-parser'
 import toast from 'react-hot-toast'
 
 import styles from './AnimeDetail.styles'
@@ -25,11 +26,17 @@ const _renderCollections = (collections: AnimeCollection[]) => (
 
 const AnimeDetail = (props: Props) => {
   const {isShowing, toggle} = useModal()
-  const [collections, setCollections] = usePersistedState('anime-collections', [])
+  const [collections, setCollections] = useState([])
+  const [persistedState, setPersistedState] = usePersistedState('anime-collections', [])
+
   const filteredCollections = filterCollectionsById(collections, props.id)
 
+  useEffect(() => {
+    setCollections(persistedState)
+  }, [persistedState])
+
   function handleAddCollection(name: string) {
-    setCollections(addCollections(collections, name))
+    setPersistedState(addCollections(collections, name))
   }
 
   function handleSaveAnime(collectionName: string) {
@@ -38,7 +45,7 @@ const AnimeDetail = (props: Props) => {
       id, title, coverImage
     }
 
-    setCollections(updateCollections(collections, collectionName, newList))
+    setPersistedState(updateCollections(collections, collectionName, newList))
     toggle()
     toast.success(`${props.title.english} has been added to collection ${collectionName}`)
   }
