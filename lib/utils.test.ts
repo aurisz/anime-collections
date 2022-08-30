@@ -9,10 +9,9 @@ import {
   isCollectionNameExists,
   removeAnimeFromCollections
 } from './utils'
-import type { AnimeCollection } from '../types'
 
 describe('utils', () => {
-  let collections: AnimeCollection[]
+  let collections
 
   beforeEach(() => {
     collections = [
