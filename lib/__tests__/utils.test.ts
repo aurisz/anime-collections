@@ -8,7 +8,7 @@ import {
   editCollectionName,
   isCollectionNameExists,
   removeAnimeFromCollections
-} from './utils'
+} from '../utils'
 
 describe('utils', () => {
   let collections

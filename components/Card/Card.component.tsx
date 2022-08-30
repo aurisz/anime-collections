@@ -14,7 +14,7 @@ const Card = ({ image, title }: Props) => {
 
   return (
     <div css={styles.gridItem}>
-      <Image src={src} width={230} height={325} alt={title} onError={() => setSrc(placeholderPoster)} />
+      <Image src={src} width={230} height={325} alt={`${title} Cover Image`} onError={() => setSrc(placeholderPoster)} />
       <p>{title}</p>
     </div>
   )

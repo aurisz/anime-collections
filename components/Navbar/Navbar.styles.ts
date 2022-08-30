@@ -15,11 +15,17 @@ const styles = {
     display: flex;
     list-style-type: none;
     justify-content: space-around;
+
+    li {
+      cursor: pointer;
+    }
   `,
-  navLink: ({ isActive }: { isActive: boolean }) => css`
-    color: ${isActive ? '#0072F5' : 'white'};
-    cursor: pointer;
+  navLink: css`
+    color: white;
   `,
+  activeLink: css`
+    color: #0072F5;
+  `
 }
 
 export default styles;

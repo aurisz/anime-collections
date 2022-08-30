@@ -4,19 +4,21 @@ import { useRouter } from 'next/router'
 import styles from './Navbar.styles'
 
 const Navbar = () => {
-  const router = useRouter()
+  const { pathname } = useRouter()
+
+  const getLinkStyle = (isActive: boolean) => isActive ? styles.activeLink : styles.navLink
 
   return (
     <nav css={styles.container}>
       <ul css={styles.navList}>
         <li>
-          <Link href="/" passHref>
-            <a css={styles.navLink({ isActive: router.pathname === '/' })}>Explore</a>
+          <Link href="/">
+            <a css={getLinkStyle(pathname === '/')}>Explore</a>
           </Link>
         </li>
         <li>
           <Link href="/collections">
-            <a css={styles.navLink({ isActive: router.pathname.includes('collection') })}>Collections</a>
+            <a css={getLinkStyle(pathname.includes('collection'))}>Collections</a>
           </Link>
         </li>
       </ul>

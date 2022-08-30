@@ -3,7 +3,7 @@ import Head from 'next/head'
 import type { GetServerSideProps } from 'next'
 
 import client from '../../lib/apollo-client'
-import { GET_ANIME_DETAIL } from '../../graphql/getAnimeDetail.gql';
+import { GET_ANIME_DETAIL } from '../../queries/getAnimeDetail.gql';
 import AnimeDetail from '../../modules/AnimeDetail';
 import type { AnimeDetail as AnimeDetailType } from '../../types'
 import type { NextPageWithLayout } from '../_app'

@@ -59,20 +59,22 @@ const Pagination = ({
   const isLastPage = currentPage === lastPage
 
   return (
-    <ul css={styles.container}>
-      {!isFirstPage && _renderPrevNext('❮', onPrevious)}
-      {paginationRange.map((pageNumber, index) => {
-        if (pageNumber === DOTS) return _renderDots(index)
+    <nav role="navigation" aria-label="Pagination">
+      <ul css={styles.container}>
+        {!isFirstPage && _renderPrevNext('❮', onPrevious)}
+        {paginationRange.map((pageNumber, index) => {
+          if (pageNumber === DOTS) return _renderDots(index)
 
-        if (typeof pageNumber === 'number') {
-          const isCurrentPage = currentPage === pageNumber
-          return _renderPageNumber(pageNumber, isCurrentPage, onPageChange, index)
-        }
+          if (typeof pageNumber === 'number') {
+            const isCurrentPage = currentPage === pageNumber
+            return _renderPageNumber(pageNumber, isCurrentPage, onPageChange, index)
+          }
 
-        return null
-      })}
-      {!isLastPage && _renderPrevNext('❯', onNext)}
-    </ul>
+          return null
+        })}
+        {!isLastPage && _renderPrevNext('❯', onNext)}
+      </ul>
+    </nav>
   );
 };
 

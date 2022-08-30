@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import type { NextPage, GetServerSideProps } from 'next'
 
 import client from '../lib/apollo-client'
-import { GET_ANIME_LIST } from '../graphql/getAnimeList.gql'
+import { GET_ANIME_LIST } from '../queries/getAnimeList.gql'
 import AnimeList from '../modules/AnimeList'
 import { Pagination } from '../components'
 import type { AnimeListItem, PageInfo } from '../types'
