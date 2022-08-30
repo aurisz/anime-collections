@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast'
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import NextNProgress from "nextjs-progressbar"
 
 import '../styles/globals.css'
 import apolloClient from '../lib/apollo-client'
@@ -28,6 +29,7 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <ApolloProvider client={apolloClient}>
+      <NextNProgress />
       {getLayout(<Component {...pageProps} />)}
       <Toaster />
     </ApolloProvider>

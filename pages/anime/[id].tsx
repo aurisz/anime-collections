@@ -27,18 +27,16 @@ interface Props {
   animeDetail: AnimeDetailType
 }
 
-const AnimeDetailPage: NextPageWithLayout<Props> = ({ animeDetail }: Props) => {
-  return (
-    <>
-      <Head>
-        <title>Anime Details</title>
-        <meta name="description" content="Anime Details" />
-      </Head>
+const AnimeDetailPage: NextPageWithLayout<Props> = ({ animeDetail }: Props) => (
+  <>
+    <Head>
+      <title>Anime Details</title>
+      <meta name="description" content="Anime Details" />
+    </Head>
 
-      <AnimeDetail {...animeDetail} />
-    </>
-  )
-}
+    <AnimeDetail {...animeDetail} />
+  </>
+)
 
 AnimeDetailPage.getLayout = function getLayout(page: ReactElement) {
   return page
