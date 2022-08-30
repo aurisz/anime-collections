@@ -31,6 +31,7 @@ const _renderItem = (
     title={name}
     link={`/collection/${name}`}
     image={list[0]?.coverImage.large}
+    count={list.length}
     onEdit={() => openModal(EDIT_COLLECTION, name)}
     onRemove={() => openModal(REMOVE_COLLECTION, name)}
   />

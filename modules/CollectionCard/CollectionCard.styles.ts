@@ -11,6 +11,18 @@ const styles = {
   container: css`
     position: relative;
   `,
+  countCounter: css`
+    position: absolute;
+    top: 0.25rem;
+    left: 0.25rem;
+    background-color: #a66908;
+    border-radius: 8px;
+
+    span {
+      color: white;
+      padding: 0.5rem;
+    }
+  `,
   buttonContainer: css`
     position: absolute;
     top: 0.25rem;
