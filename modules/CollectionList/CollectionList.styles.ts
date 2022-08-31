@@ -6,6 +6,9 @@ const styles = {
     display: flex;
     flex-direction: column;
   `,
+  emptyContent: css`
+    text-align: center;
+  `
 }
 
 export default styles

@@ -15,7 +15,7 @@ const styles = {
     position: absolute;
     top: 0.25rem;
     left: 0.25rem;
-    background-color: #a66908;
+    background-color: #9750DD;
     border-radius: 8px;
 
     span {

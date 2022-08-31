@@ -1,12 +1,15 @@
 import { css } from '@emotion/react'
 
 const styles = {
-  gridItem: css`
+  card: css`
     cursor: pointer;
 
     img {
-      object-fit: fill;
       border-radius: 8px;
+    }
+
+    p {
+      text-align: center;
     }
   `
 }

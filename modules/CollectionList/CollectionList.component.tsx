@@ -22,6 +22,12 @@ const {
   REMOVE_COLLECTION,
 } = MODAL_TYPE
 
+const _renderEmpty = () => (
+  <div css={styles.emptyContent}>
+    <p>No Collections Found</p>
+  </div>
+)
+
 const _renderItem = (
   { name, list }: AnimeCollection, openModal: (type: string, name: string) => void
 ) => (
@@ -98,12 +104,11 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
         </Button>
       </div>
 
-      <GridLayout>
-        {collections.length === 0 
-          ? <p>No Collections Found</p>
-          : collections.map((collection) => _renderItem(collection, openModal))
-        }
-      </GridLayout>
+      {collections.length === 0 ? _renderEmpty() : (
+        <GridLayout>
+          {collections.map((collection) => _renderItem(collection, openModal))}
+        </GridLayout>
+      )}
 
       <Modal
         isShowing={isShowing}

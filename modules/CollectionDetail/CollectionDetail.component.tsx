@@ -25,7 +25,9 @@ const {
 } = MODAL_TYPE
 
 const _renderEmpty = () => (
-  <p>No Anime on this collections!</p>
+  <div css={styles.emptyContent}>
+    <p>No Anime on this collections</p>
+  </div>
 )
 
 const _renderCollection = (item: AnimeListItem, openModal: (modalType: string, animeId: number) => void) => (
@@ -91,9 +93,11 @@ const CollectionDetail = ({ name, list, persistedState, setPersistedState }: Pro
         <div css={styles.edit} onClick={() => openModal(EDIT_COLLECTION)}>✎ Edit</div>
       </div>
   
-      <GridLayout>
-        {list.length === 0 ? _renderEmpty() : list.map((item) => _renderCollection(item, openModal))}
-      </GridLayout>
+      {list.length === 0 ? _renderEmpty() : (
+        <GridLayout>
+          {list.map((item) => _renderCollection(item, openModal))}
+        </GridLayout>
+      )}
   
       <Modal
         isShowing={isShowing}

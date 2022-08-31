@@ -1,9 +1,8 @@
 import { css } from '@emotion/react'
 
 const styles = css`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  font-weight: bold;
+  font-size: 1.1rem;
 `
 
 export default styles

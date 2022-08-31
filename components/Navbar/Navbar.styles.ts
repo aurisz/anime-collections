@@ -15,16 +15,23 @@ const styles = {
     display: flex;
     list-style-type: none;
     justify-content: space-around;
+    padding-bottom: 1rem;
 
     li {
       cursor: pointer;
     }
   `,
   navLink: css`
-    color: white;
+    color: #3694FF;
+
+    &:hover {
+      color: #0072F5;
+    }
   `,
   activeLink: css`
-    color: #0072F5;
+    color: white;
+    border-bottom: 2px solid white;
+    padding-bottom: 0.5rem;
   `
 }
 

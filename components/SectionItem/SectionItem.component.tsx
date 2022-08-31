@@ -1,3 +1,5 @@
+import styles from './SectionItem.styles'
+
 interface Props {
   label: string;
   children: React.ReactNode;
@@ -5,7 +7,7 @@ interface Props {
 
 const SectionItem = ({ label, children }: Props) => (
   <section>
-    <h4>{label}</h4>
+    <p css={styles}>{label}</p>
     {children}
   </section>
 )

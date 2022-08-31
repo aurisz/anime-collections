@@ -11,6 +11,10 @@ const styles = {
   `,
   edit: css`
     cursor: pointer;
+    color: #0072F5;
+  `,
+  emptyContent: css`
+    text-align: center;
   `
 }
 

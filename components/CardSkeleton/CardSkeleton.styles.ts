@@ -14,10 +14,9 @@ const breath = keyframes`
 
 const styles = {
   container: css`
+    overflow: hidden;
     position: relative;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-    width: 184px;
-    height: 303px;
+    max-width: 100%;
   `,
   shimmer: css`
     animation-duration: 1.5s;
@@ -29,17 +28,19 @@ const styles = {
     animation-play-state: running;
     animation-name: ${breath};
     background: rgba(255, 255, 255, 0.35);
+
+    min-width: 100%;
+    max-width: 100%;
+    border-radius: 8px;
   `,
   shimmerImage: css`
-    width: 90%;
-    height: 70%;
-    border-radius: 8px;
+    width: 213px;
+    height: 250px;
   `,
   shimmerTitle: css`
-    height: 10%;
-    width: 90%;
+    width: 213px;
+    height: 21px;
     margin-top: 1rem;
-    border-radius: 8px;
   `
 }
 
