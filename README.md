@@ -1,9 +1,26 @@
 
 # Anime Collections
+Web App to browse anime from anilist api and save it to your collections.
+[Demo URL](https://anime-collections-six.vercel.app/)
 
-Web App to browse anime and add it to your collections.
+<br>
+<center>
+  <img src="docs/anime-list-desktop.png" height="400" />
+</center>
+<br>
 
-[Demo URL](https://anime-collections-jkczfeewa-aurisz.vercel.app/)
+## Features
+- Explore thousands of anime from anilist api
+- View anime detail like rating, description, video, etc
+- Save favorite anime to your collection
+- Edit saved collection or remove them
+
+## Tech Stack
+- NextJs
+- Apollo GraphQL
+- Emotion CSS
+- Jest
+- React Testing Library
 
 ## Run Locally
 
@@ -33,3 +50,11 @@ Start the app
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Screenshots
+
+<img align="top" src="docs/anime-list-mobile.png" height="800" />
+&nbsp;&nbsp;&nbsp;
+<img align="top" src="docs/anime-detail-mobile.png" height="800" />
+
+### Lighthouse Report
+![lighthouse](./docs/lighthouse-report.png)
