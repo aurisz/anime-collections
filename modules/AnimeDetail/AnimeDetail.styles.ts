@@ -5,18 +5,15 @@ const styles = {
     margin-bottom: 2rem;
   `,
   imageContainer: css`
-    position: relative;
-  `,
-  bannerImage: css`
     width: 100vw;
-    min-height: 210px;
+    min-height: 300px;
     position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    object-fit: cover;
-    margin-top: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      position: relative !important;
+    }
   `,
   content: css`
     max-width: 768px;

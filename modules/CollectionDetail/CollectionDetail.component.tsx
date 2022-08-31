@@ -25,7 +25,7 @@ const {
 } = MODAL_TYPE
 
 const _renderEmpty = () => (
-  <h4>No Anime on this collections!</h4>
+  <p>No Anime on this collections!</p>
 )
 
 const _renderCollection = (item: AnimeListItem, openModal: (modalType: string, animeId: number) => void) => (

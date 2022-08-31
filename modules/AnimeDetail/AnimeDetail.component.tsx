@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import parse from 'html-react-parser'
 import toast from 'react-hot-toast'
 
@@ -17,8 +18,10 @@ const _renderEmptyCollections = () => (
 const _renderCollections = (collections: AnimeCollection[]) => (
   <div css={styles.collectionContainer}>
     {collections.map(({ name }) => (
-      <Link key={name} href={`/collection/${name}`}>
-        <p>{name}</p>
+      <Link key={name} href={`/collection/${name}`} passHref>
+        <a>
+          <p>{name}</p>
+        </a>
       </Link>
     ))}
   </div>
@@ -50,9 +53,15 @@ const AnimeDetail = (props: Props) => {
   
   return (
     <div css={styles.container}>
-      <picture css={styles.imageContainer}>
-        <img css={styles.bannerImage} src={props.bannerImage} alt={props.title.english} />
-      </picture>
+      <div css={styles.imageContainer}>
+        <Image
+          src={props.bannerImage}
+          alt={`${props.title.english} Banner Image`}
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
+      </div>
       
       <div css={styles.content}>
         <h1>{props.title.english}</h1>
@@ -76,7 +85,7 @@ const AnimeDetail = (props: Props) => {
         </SectionItem>
 
         <SectionItem label="Video">
-          <YoutubeEmbed id={props.trailer?.id} />
+          <YoutubeEmbed id={props.trailer?.id} title={props.title.english} />
         </SectionItem>
       </div>
 

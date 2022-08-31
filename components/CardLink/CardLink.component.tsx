@@ -8,7 +8,7 @@ export interface Props extends CardProps {
 }
 
 const CardLink = ({ link, ...props }: Props) => (
-  <Link href={link}>
+  <Link href={link} passHref>
     <a>
       <Card {...props} />
     </a>

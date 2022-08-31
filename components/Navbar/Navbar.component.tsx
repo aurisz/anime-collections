@@ -12,12 +12,12 @@ const Navbar = () => {
     <nav css={styles.container}>
       <ul css={styles.navList}>
         <li>
-          <Link href="/">
+          <Link href="/" passHref>
             <a css={getLinkStyle(pathname === '/')}>Explore</a>
           </Link>
         </li>
         <li>
-          <Link href="/collections">
+          <Link href="/collections" passHref>
             <a css={getLinkStyle(pathname.includes('collection'))}>Collections</a>
           </Link>
         </li>

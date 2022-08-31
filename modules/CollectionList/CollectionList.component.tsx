@@ -99,8 +99,10 @@ const CollectionList = ({ collections, setPersistedState }: Props) => {
       </div>
 
       <GridLayout>
-        {collections.length === 0 && <h4>No Collections Found</h4>}
-        {collections.map((collection) => _renderItem(collection, openModal))}
+        {collections.length === 0 
+          ? <p>No Collections Found</p>
+          : collections.map((collection) => _renderItem(collection, openModal))
+        }
       </GridLayout>
 
       <Modal

@@ -1,21 +1,16 @@
-import styles from './YoutubeEmbed.styles'
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 interface Props {
   id: string;
+  title: string;
 }
 
-const YoutubeEmbed = ({ id }: Props) => id ? (
-  <div css={styles}>
-    <iframe
-      width="853"
-      height="480"
-      src={`https://www.youtube.com/embed/${id}`}
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      title="Embedded youtube"
-    />
-  </div>
+const YoutubeEmbed = ({ id, title }: Props) => id ? (
+  <LiteYouTubeEmbed 
+    id={id}
+    title={title}
+  />
 ) : <p>No Video Found</p>
 
 export default YoutubeEmbed
