@@ -1,9 +1,15 @@
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import { useRouter } from 'next/router'
 
 import AnimeListPage from '../pages/index'
 import { GET_ANIME_LIST } from '../queries'
+
+jest.mock('next/router', () => ({
+  __esModule: true,
+  useRouter: jest.fn()
+}))
 
 const mockResolvedData = {
   pageInfo: {
@@ -42,16 +48,33 @@ const mocks = [{
   result: mockResult
 }]
 
+const setupComponent = () => render(
+  <MockedProvider mocks={mocks} addTypename={false}>
+    <AnimeListPage data={mockResolvedData} />
+  </MockedProvider>
+)
+
 describe('Anime List Page', () => {
   it('should renders anime list', async () => {
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <AnimeListPage data={mockResolvedData} />
-      </MockedProvider>
-    );
+    setupComponent()
     
     expect(await screen.findByText(/Title/i)).toBeInTheDocument()
-    expect(await screen.getByAltText(/Title Cover Image/i)).toBeInTheDocument()
-    expect(await screen.getByLabelText(/Pagination/i)).toBeInTheDocument()
+    expect(screen.getByAltText(/Title Cover Image/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/Pagination/i)).toBeInTheDocument()
+  })
+
+  it('should renders next page when pagination item is clicked', () => {
+    const mockRouter = { push: jest.fn() }
+    useRouter.mockReturnValue(mockRouter)
+
+    setupComponent()
+    
+    const button = screen.getByText('2')
+    fireEvent.click(button)
+
+    expect(mockRouter.push).toBeCalledWith({
+      pathname: '/',
+      query: { page: 2 }
+    })
   })
 })
