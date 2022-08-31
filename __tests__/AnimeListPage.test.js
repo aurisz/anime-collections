@@ -14,9 +14,9 @@ const mockResolvedData = {
   },
   media: [
     {
-      id: 16498,
+      id: 1,
       title: {
-        english: "Attack on Titan"
+        english: 'Title'
       },
       coverImage: {
         large: 'https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx16498-C6FPmWm59CyP.jpg'
@@ -50,8 +50,8 @@ describe('Anime List Page', () => {
       </MockedProvider>
     );
     
-    expect(await screen.findByText('Attack on Titan')).toBeInTheDocument()
-    expect(await screen.getByAltText('Attack on Titan Cover Image')).toBeInTheDocument()
-    expect(await screen.getByLabelText('Pagination')).toBeInTheDocument()
+    expect(await screen.findByText(/Title/i)).toBeInTheDocument()
+    expect(await screen.getByAltText(/Title Cover Image/i)).toBeInTheDocument()
+    expect(await screen.getByLabelText(/Pagination/i)).toBeInTheDocument()
   })
 })

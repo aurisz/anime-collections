@@ -7,10 +7,12 @@ interface Props {
 }
 
 const YoutubeEmbed = ({ id, title }: Props) => id ? (
-  <LiteYouTubeEmbed 
-    id={id}
-    title={title}
-  />
+  <div data-testid={`${title} Video`}>
+    <LiteYouTubeEmbed 
+      id={id}
+      title={title}
+    />
+  </div>
 ) : <p>No Video Found</p>
 
 export default YoutubeEmbed
