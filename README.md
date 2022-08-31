@@ -3,11 +3,7 @@
 Web App to browse anime from anilist api and save it to your collections.
 [Demo URL](https://anime-collections-six.vercel.app/)
 
-<br>
-<center>
-  <img src="docs/anime-list-desktop.png" height="400" />
-</center>
-<br>
+<img src="docs/anime-list-desktop.png" height="400" />
 
 ## Features
 - Explore thousands of anime from anilist api
@@ -52,9 +48,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Screenshots
 
-<img align="top" src="docs/anime-list-mobile.png" height="800" />
-&nbsp;&nbsp;&nbsp;
-<img align="top" src="docs/anime-detail-mobile.png" height="800" />
+<p align="left">
+  <img align="top" src="docs/anime-list-mobile.png" height="800" />
+  &nbsp;&nbsp;&nbsp;
+  <img align="top" src="docs/anime-detail-mobile.png" height="800" />
+</p>
 
 ### Lighthouse Report
 ![lighthouse](./docs/lighthouse-report.png)
