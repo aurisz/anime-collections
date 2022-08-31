@@ -38,7 +38,12 @@ const CollectionInput = ({ collections, onSubmit, initialValue = '', label }: Pr
   return (
     <form css={styles.formWrapper} onSubmit={handleSubmit}>
       <div css={styles.inputWrapper}>
-        <TextInput value={value} onChange={handleChange} placeholder="Input Collection Name" />
+        <TextInput
+          value={value}
+          onChange={handleChange}
+          placeholder="Input Collection Name"
+          aria-label="add-collection-input"
+        />
       </div>
       {error && <p>{error}</p>}
       <Button type="submit" onClick={handleSubmit} disabled={!value}>
